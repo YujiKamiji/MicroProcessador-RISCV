@@ -5,8 +5,10 @@ use IEEE.NUMERIC_STD.ALL;
 entity ULA is
     Port (
         clk: in std_logic;
+        load_ac: in unsigned(15 downto 0);
         ent1: in unsigned(15 downto 0);
-        selector: in unsigned(1 downto 0);
+        op_code: in unsigned(1 downto 0);
+        flag_zero: out std_logic;
         res: out unsigned(15 downto 0)
     );
 end ULA;
@@ -15,7 +17,7 @@ architecture arch of ULA is
 
     component Mux_4x1 is
         port(
-            n1,n2,n3,n4: in unsigned(15 downto 0);
+            add,sub,ld,cmp: in unsigned(15 downto 0);
             selector_key: in unsigned(1 downto 0);
             result: out unsigned(15 downto 0)  
         );
@@ -24,24 +26,42 @@ architecture arch of ULA is
     signal soma, sub: unsigned(15 downto 0);
     signal ac: unsigned(15 downto 0);
     signal mux_out: unsigned(15 downto 0);
+    signal carry_flag : std_logic := '0';
+    signal carry_next : std_logic;
+    signal ent1_carry : unsigned(15 downto 0);
+    signal cmp_aux : unsigned(15 downto 0);  
 begin
     soma <= ac + ent1;
-    sub <= ac - ent1;
+    sub <= ac - ent1 - ("000000000000000" & carry_flag);
+    cmp_aux <= ac - ent1;
+
+    ent1_carry <= ent1 + ("000000000000000" & carry_flag);
+    carry_next <= '1' when ac < ent1_carry else '0';
 
     mux: Mux_4x1
         port map(
-            n1 => soma,
-            n2 => sub,
-            n3 => (others => 0),
-            n4 => (others => 0),
-            selector_key => selector,
+            add => soma,
+            sub => sub,
+            ld => load_ac,
+            cmp => ac,
+            selector_key => op_code,
             result => mux_out
         );
 
-    process(clk)
+    process(clk) 
     begin
+        //Registradores sendo criados para ac e flags por estarem sofrendo atribuicoes sensiveis ao clock, proposital
         if rising_edge(clk) then
             ac <= mux_out;
+
+            if op_code = "01" then  
+                carry_flag <= carry_next;
+            end if;
+
+            if op_code = "11" then  
+                flag_zero <= '1' when cmp_aux = 0 else '0';
+            end if;
+
         end if;
     end process;
 
