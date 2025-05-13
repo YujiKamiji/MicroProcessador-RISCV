@@ -5,7 +5,6 @@ use IEEE.NUMERIC_STD.ALL;
 entity ULA is
     Port (
         clk: in std_logic;
-        load_ac: in unsigned(15 downto 0);
         ent1: in unsigned(15 downto 0);
         op_code: in unsigned(1 downto 0);
         flag_zero: out std_logic;
@@ -42,7 +41,7 @@ begin
         port map(
             add => soma,
             sub => sub,
-            ld => load_ac,
+            ld => ent1,
             cmp => ac,
             selector_key => op_code,
             result => mux_out
@@ -50,7 +49,7 @@ begin
 
     process(clk) 
     begin
-        //Registradores sendo criados para ac e flags por estarem sofrendo atribuicoes sensiveis ao clock, proposital
+        --Registradores sendo criados para ac e flags por estarem sofrendo atribuicoes sensiveis ao clock, proposital
         if rising_edge(clk) then
             ac <= mux_out;
 
