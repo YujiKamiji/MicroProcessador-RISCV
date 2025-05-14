@@ -23,7 +23,7 @@ architecture arch of ULA is
     end component;
 
     signal soma, sub: unsigned(15 downto 0);
-    signal ac: unsigned(15 downto 0);
+    signal ac: unsigned(15 downto 0) := (others => '0');
     signal mux_out: unsigned(15 downto 0);
     signal carry_flag : std_logic := '0';
     signal carry_next : std_logic;
@@ -57,8 +57,10 @@ begin
                 carry_flag <= carry_next;
             end if;
 
-            if op_code = "11" then  
-                flag_zero <= '1' when cmp_aux = 0 else '0';
+            if op_code = "11" and cmp_aux = 0 then  
+                flag_zero <= '1';
+            else
+                flag_zero <= '0';
             end if;
 
         end if;

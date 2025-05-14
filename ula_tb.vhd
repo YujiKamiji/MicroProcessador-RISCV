@@ -27,42 +27,46 @@ begin
     -- Geração do clock
     clk_process : process
     begin
-        while true loop
+        for i in 0 to 9 loop
             clk_tb <= '0';
-            wait for 5 ns;
+            wait for 2.5 ns;
             clk_tb <= '1';
-            wait for 5 ns;
+            wait for 2.5 ns;
         end loop;
+        wait; -- finaliza o processo
     end process;
 
     -- Estímulos
     stim_proc : process
-    begin
-        -- LD: ac ← 10
-        ent1_tb <= to_unsigned(10, 16);
-        op_code_tb <= "10";
-        wait for 10 ns;
+begin
+    wait for 5 ns; -- Espera 1 ciclo para estabilidade inicial
 
-        -- ADD: ac ← 10 + 5 = 15
-        ent1_tb <= to_unsigned(5, 16);
-        op_code_tb <= "00";
-        wait for 10 ns;
+    -- LD: ac ← 10
+    wait until rising_edge(clk_tb);
+    ent1_tb <= to_unsigned(10, 16);
+    op_code_tb <= "10";
 
-        -- SUB: ac ← 15 - 3 = 12
-        ent1_tb <= to_unsigned(3, 16);
-        op_code_tb <= "01";
-        wait for 10 ns;
+    -- ADD: ac ← 10 + 5 = 15
+    wait until rising_edge(clk_tb);
+    ent1_tb <= to_unsigned(5, 16);
+    op_code_tb <= "00";
 
-        -- CMP: compara ac (=12) com ent1 (=12) → flag_zero = 1
-        ent1_tb <= to_unsigned(12, 16);
-        op_code_tb <= "11";
-        wait for 10 ns;
+    -- SUB: ac ← 15 - 3 = 12
+    wait until rising_edge(clk_tb);
+    ent1_tb <= to_unsigned(3, 16);
+    op_code_tb <= "01";
 
-        -- CMP: compara ac (=12) com ent1 (=7) → flag_zero = 0
-        ent1_tb <= to_unsigned(7, 16);
-        op_code_tb <= "11";
-        wait for 10 ns;
+    -- CMP: ac = 12, ent1 = 12 → flag_zero = 1
+    wait until rising_edge(clk_tb);
+    ent1_tb <= to_unsigned(12, 16);
+    op_code_tb <= "11";
 
-        wait;
-    end process;
+    -- CMP: ac = 12, ent1 = 7 → flag_zero = 0
+    wait until rising_edge(clk_tb);
+    ent1_tb <= to_unsigned(7, 16);
+    op_code_tb <= "11";
+
+    wait;
+end process;
+
 end Behavioral;
