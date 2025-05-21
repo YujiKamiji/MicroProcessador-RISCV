@@ -1,0 +1,1512 @@
+$date
+  Wed May 21 17:49:55 2025
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module banc_ula_tb $end
+$var reg 1 ! clk_tb $end
+$var reg 1 " rst_tb $end
+$var reg 2 # op_code_tb[1:0] $end
+$var reg 4 $ reg_selector_tb[3:0] $end
+$var reg 1 % load_control_banco_tb $end
+$var reg 2 & load_control_ac_tb[1:0] $end
+$var reg 1 ' cmpi_control_tb $end
+$var reg 16 ( load_value_tb[15:0] $end
+$var reg 1 ) wr_reg_enable_tb $end
+$var reg 1 * flag_zero_tb $end
+$var reg 1 + flag_carry_tb $end
+$var reg 16 , reg_read_out_tb[15:0] $end
+$var reg 16 - ac_value_tb[15:0] $end
+$var reg 1 . finished $end
+$var reg 1 / wr_ac_enable_tb $end
+$scope module banc $end
+$var reg 1 0 clk $end
+$var reg 2 1 op_code[1:0] $end
+$var reg 4 2 reg_selector[3:0] $end
+$var reg 1 3 load_control_banco $end
+$var reg 2 4 load_control_ac[1:0] $end
+$var reg 1 5 cmpi_control $end
+$var reg 16 6 load_value[15:0] $end
+$var reg 1 7 wr_reg_enable $end
+$var reg 1 8 wr_ac_enable $end
+$var reg 1 9 reset $end
+$var reg 1 : flag_zero $end
+$var reg 1 ; flag_carry $end
+$var reg 16 < reg_read_out[15:0] $end
+$var reg 16 = ac_value[15:0] $end
+$var reg 16 > out_banco[15:0] $end
+$var reg 16 ? dado_ula[15:0] $end
+$var reg 16 @ ac_out[15:0] $end
+$var reg 16 A in_banco[15:0] $end
+$var reg 16 B in_ac[15:0] $end
+$var reg 16 C in_ula[15:0] $end
+$scope module mux_banco $end
+$var reg 16 D ent1[15:0] $end
+$var reg 16 E ent2[15:0] $end
+$var reg 1 F selector_key $end
+$var reg 16 G result[15:0] $end
+$upscope $end
+$scope module mux_ac $end
+$var reg 16 H ent1[15:0] $end
+$var reg 16 I ent2[15:0] $end
+$var reg 16 J ent3[15:0] $end
+$var reg 2 K selector_key[1:0] $end
+$var reg 16 L result[15:0] $end
+$upscope $end
+$scope module mux_ula $end
+$var reg 16 M ent1[15:0] $end
+$var reg 16 N ent2[15:0] $end
+$var reg 1 O selector_key $end
+$var reg 16 P result[15:0] $end
+$upscope $end
+$scope module banco $end
+$var reg 4 Q selector[3:0] $end
+$var reg 1 R clk $end
+$var reg 16 S reg_wr[15:0] $end
+$var reg 1 T wr_enable $end
+$var reg 1 U reset $end
+$var reg 16 V reg_out[15:0] $end
+$var reg 9 W we_aux[8:0] $end
+$comment reg_aux is not handled $end
+$scope module demux $end
+$var reg 4 X selector[3:0] $end
+$var reg 1 Y enable_in $end
+$var reg 9 Z we[8:0] $end
+$upscope $end
+$scope module r0 $end
+$var reg 1 [ clk $end
+$var reg 16 \ input[15:0] $end
+$var reg 1 ] wr_enable $end
+$var reg 1 ^ reset $end
+$var reg 16 _ output[15:0] $end
+$var reg 16 ` data[15:0] $end
+$upscope $end
+$scope module r1 $end
+$var reg 1 a clk $end
+$var reg 16 b input[15:0] $end
+$var reg 1 c wr_enable $end
+$var reg 1 d reset $end
+$var reg 16 e output[15:0] $end
+$var reg 16 f data[15:0] $end
+$upscope $end
+$scope module r2 $end
+$var reg 1 g clk $end
+$var reg 16 h input[15:0] $end
+$var reg 1 i wr_enable $end
+$var reg 1 j reset $end
+$var reg 16 k output[15:0] $end
+$var reg 16 l data[15:0] $end
+$upscope $end
+$scope module r3 $end
+$var reg 1 m clk $end
+$var reg 16 n input[15:0] $end
+$var reg 1 o wr_enable $end
+$var reg 1 p reset $end
+$var reg 16 q output[15:0] $end
+$var reg 16 r data[15:0] $end
+$upscope $end
+$scope module r4 $end
+$var reg 1 s clk $end
+$var reg 16 t input[15:0] $end
+$var reg 1 u wr_enable $end
+$var reg 1 v reset $end
+$var reg 16 w output[15:0] $end
+$var reg 16 x data[15:0] $end
+$upscope $end
+$scope module r5 $end
+$var reg 1 y clk $end
+$var reg 16 z input[15:0] $end
+$var reg 1 { wr_enable $end
+$var reg 1 | reset $end
+$var reg 16 } output[15:0] $end
+$var reg 16 !" data[15:0] $end
+$upscope $end
+$scope module r6 $end
+$var reg 1 "" clk $end
+$var reg 16 #" input[15:0] $end
+$var reg 1 $" wr_enable $end
+$var reg 1 %" reset $end
+$var reg 16 &" output[15:0] $end
+$var reg 16 '" data[15:0] $end
+$upscope $end
+$scope module r7 $end
+$var reg 1 (" clk $end
+$var reg 16 )" input[15:0] $end
+$var reg 1 *" wr_enable $end
+$var reg 1 +" reset $end
+$var reg 16 ," output[15:0] $end
+$var reg 16 -" data[15:0] $end
+$upscope $end
+$scope module r8 $end
+$var reg 1 ." clk $end
+$var reg 16 /" input[15:0] $end
+$var reg 1 0" wr_enable $end
+$var reg 1 1" reset $end
+$var reg 16 2" output[15:0] $end
+$var reg 16 3" data[15:0] $end
+$upscope $end
+$scope module mux $end
+$var reg 4 4" selector[3:0] $end
+$var reg 16 5" x0[15:0] $end
+$var reg 16 6" x1[15:0] $end
+$var reg 16 7" x2[15:0] $end
+$var reg 16 8" x3[15:0] $end
+$var reg 16 9" x4[15:0] $end
+$var reg 16 :" x5[15:0] $end
+$var reg 16 ;" x6[15:0] $end
+$var reg 16 <" x7[15:0] $end
+$var reg 16 =" x8[15:0] $end
+$var reg 16 >" result[15:0] $end
+$upscope $end
+$upscope $end
+$scope module ula_inst $end
+$var reg 1 ?" clk $end
+$var reg 16 @" ent1[15:0] $end
+$var reg 16 A" ac[15:0] $end
+$var reg 2 B" op_code[1:0] $end
+$var reg 1 C" flag_carry_in $end
+$var reg 1 D" flag_carry_out $end
+$var reg 1 E" flag_zero_out $end
+$var reg 16 F" res[15:0] $end
+$var reg 16 G" soma[15:0] $end
+$var reg 16 H" sub[15:0] $end
+$var reg 16 I" mux_out[15:0] $end
+$var reg 1 J" carry_next $end
+$var reg 16 K" ent1_carry[15:0] $end
+$var reg 16 L" cmp_aux[15:0] $end
+$var reg 16 M" and_op[15:0] $end
+$scope module mux $end
+$var reg 16 N" add[15:0] $end
+$var reg 16 O" sub[15:0] $end
+$var reg 16 P" andop[15:0] $end
+$var reg 16 Q" cmp[15:0] $end
+$var reg 2 R" selector_key[1:0] $end
+$var reg 16 S" result[15:0] $end
+$upscope $end
+$upscope $end
+$scope module acumulador $end
+$var reg 1 T" clk $end
+$var reg 16 U" input[15:0] $end
+$var reg 1 V" wr_enable $end
+$var reg 1 W" reset $end
+$var reg 16 X" output[15:0] $end
+$var reg 16 Y" data[15:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+1"
+bUU #
+bUUUU $
+U%
+bUU &
+U'
+bUUUUUUUUUUUUUUUU (
+U)
+1*
+0+
+b0000000000000000 ,
+b0000000000000000 -
+0.
+U/
+00
+bUU 1
+bUUUU 2
+U3
+bUU 4
+U5
+bUUUUUUUUUUUUUUUU 6
+U7
+U8
+19
+1:
+0;
+b0000000000000000 <
+b0000000000000000 =
+b0000000000000000 >
+b0000000000000000 ?
+b0000000000000000 @
+b0000000000000000 A
+b0000000000000000 B
+b0000000000000000 C
+b0000000000000000 D
+bUUUUUUUUUUUUUUUU E
+UF
+b0000000000000000 G
+b0000000000000000 H
+bUUUUUUUUUUUUUUUU I
+b0000000000000000 J
+bUU K
+b0000000000000000 L
+b0000000000000000 M
+bUUUUUUUUUUUUUUUU N
+UO
+b0000000000000000 P
+bUUUU Q
+0R
+b0000000000000000 S
+UT
+1U
+b0000000000000000 V
+b000000000 W
+bUUUU X
+UY
+b000000000 Z
+0[
+b0000000000000000 \
+0]
+1^
+b0000000000000000 _
+b0000000000000000 `
+0a
+b0000000000000000 b
+0c
+1d
+b0000000000000000 e
+b0000000000000000 f
+0g
+b0000000000000000 h
+0i
+1j
+b0000000000000000 k
+b0000000000000000 l
+0m
+b0000000000000000 n
+0o
+1p
+b0000000000000000 q
+b0000000000000000 r
+0s
+b0000000000000000 t
+0u
+1v
+b0000000000000000 w
+b0000000000000000 x
+0y
+b0000000000000000 z
+0{
+1|
+b0000000000000000 }
+b0000000000000000 !"
+0""
+b0000000000000000 #"
+0$"
+1%"
+b0000000000000000 &"
+b0000000000000000 '"
+0("
+b0000000000000000 )"
+0*"
+1+"
+b0000000000000000 ,"
+b0000000000000000 -"
+0."
+b0000000000000000 /"
+00"
+11"
+b0000000000000000 2"
+b0000000000000000 3"
+bUUUU 4"
+b0000000000000000 5"
+b0000000000000000 6"
+b0000000000000000 7"
+b0000000000000000 8"
+b0000000000000000 9"
+b0000000000000000 :"
+b0000000000000000 ;"
+b0000000000000000 <"
+b0000000000000000 ="
+b0000000000000000 >"
+0?"
+b0000000000000000 @"
+b0000000000000000 A"
+bUU B"
+0C"
+0D"
+1E"
+b0000000000000000 F"
+b0000000000000000 G"
+b0000000000000000 H"
+b0000000000000000 I"
+0J"
+b0000000000000000 K"
+b0000000000000000 L"
+b0000000000000000 M"
+b0000000000000000 N"
+b0000000000000000 O"
+b0000000000000000 P"
+b0000000000000000 Q"
+bUU R"
+b0000000000000000 S"
+0T"
+b0000000000000000 U"
+UV"
+1W"
+b0000000000000000 X"
+b0000000000000000 Y"
+#50000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#100000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#150000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#200000000
+0!
+0"
+00
+09
+0R
+0U
+0[
+0^
+0a
+0d
+0g
+0j
+0m
+0p
+0s
+0v
+0y
+0|
+0""
+0%"
+0("
+0+"
+0."
+01"
+0?"
+0T"
+0W"
+#250000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#300000000
+0!
+b0010 $
+1%
+b0000000000001010 (
+1)
+1/
+00
+b0010 2
+13
+b0000000000001010 6
+17
+18
+b0000000000001010 A
+b0000000000001010 E
+1F
+b0000000000001010 G
+b0000000000001010 I
+b0000000000001010 N
+b0010 Q
+0R
+b0000000000001010 S
+1T
+b000000100 W
+b0010 X
+1Y
+b000000100 Z
+0[
+b0000000000001010 \
+0a
+b0000000000001010 b
+0g
+b0000000000001010 h
+1i
+0m
+b0000000000001010 n
+0s
+b0000000000001010 t
+0y
+b0000000000001010 z
+0""
+b0000000000001010 #"
+0("
+b0000000000001010 )"
+0."
+b0000000000001010 /"
+b0010 4"
+0?"
+0T"
+1V"
+#350000000
+1!
+b01 &
+b0000000000000101 (
+0)
+b0000000000001010 ,
+10
+b01 4
+b0000000000000101 6
+07
+b0000000000001010 <
+b0000000000001010 >
+b0000000000000101 A
+b0000000000000101 B
+b0000000000000101 E
+b0000000000000101 G
+b0000000000000101 I
+b0000000000001010 J
+b01 K
+b0000000000000101 L
+b0000000000001010 M
+b0000000000000101 N
+1R
+b0000000000000101 S
+0T
+b0000000000001010 V
+b000000000 W
+0Y
+b000000000 Z
+1[
+b0000000000000101 \
+1a
+b0000000000000101 b
+1g
+b0000000000000101 h
+0i
+b0000000000001010 k
+b0000000000001010 l
+1m
+b0000000000000101 n
+1s
+b0000000000000101 t
+1y
+b0000000000000101 z
+1""
+b0000000000000101 #"
+1("
+b0000000000000101 )"
+1."
+b0000000000000101 /"
+b0000000000001010 7"
+b0000000000001010 >"
+1?"
+1T"
+b0000000000000101 U"
+#400000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#450000000
+1!
+b00 #
+b00 &
+0'
+0*
+1+
+b0000000000000101 -
+10
+b00 1
+b00 4
+05
+0:
+1;
+b0000000000000101 =
+b0000000000001111 ?
+b0000000000000101 @
+b0000000000001111 B
+b0000000000001010 C
+b0000000000000101 D
+b0000000000001111 H
+b00 K
+b0000000000001111 L
+0O
+b0000000000001010 P
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+b0000000000001010 @"
+b0000000000000101 A"
+b00 B"
+1D"
+0E"
+b0000000000001111 F"
+b0000000000001111 G"
+b1111111111111011 H"
+b0000000000001111 I"
+1J"
+b0000000000001010 K"
+b1111111111111011 L"
+b0000000000001111 N"
+b1111111111111011 O"
+b0000000000000101 Q"
+b00 R"
+b0000000000001111 S"
+1T"
+b0000000000001111 U"
+b0000000000000101 X"
+b0000000000000101 Y"
+#500000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#550000000
+1!
+b0011 $
+0%
+1)
+0+
+b0000000000000000 ,
+b0000000000001111 -
+0/
+10
+b0011 2
+03
+17
+08
+0;
+b0000000000000000 <
+b0000000000001111 =
+b0000000000000000 >
+b0000000000001111 ?
+b0000000000001111 @
+b0000000000001111 A
+b0000000000001111 B
+b0000000000000000 C
+b0000000000001111 D
+0F
+b0000000000001111 G
+b0000000000001111 H
+b0000000000000000 J
+b0000000000001111 L
+b0000000000000000 M
+b0000000000000000 P
+b0011 Q
+1R
+b0000000000001111 S
+1T
+b0000000000000000 V
+b000001000 W
+b0011 X
+1Y
+b000001000 Z
+1[
+b0000000000001111 \
+1a
+b0000000000001111 b
+1g
+b0000000000001111 h
+1m
+b0000000000001111 n
+1o
+1s
+b0000000000001111 t
+1y
+b0000000000001111 z
+1""
+b0000000000001111 #"
+1("
+b0000000000001111 )"
+1."
+b0000000000001111 /"
+b0011 4"
+b0000000000000000 >"
+1?"
+b0000000000000000 @"
+b0000000000001111 A"
+0D"
+b0000000000001111 F"
+b0000000000001111 G"
+b0000000000001111 H"
+b0000000000001111 I"
+0J"
+b0000000000000000 K"
+b0000000000001111 L"
+b0000000000000000 M"
+b0000000000001111 N"
+b0000000000001111 O"
+b0000000000000000 P"
+b0000000000001111 Q"
+b0000000000001111 S"
+1T"
+b0000000000001111 U"
+0V"
+b0000000000001111 X"
+b0000000000001111 Y"
+#600000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#650000000
+1!
+0)
+1*
+b0000000000001111 ,
+10
+07
+1:
+b0000000000001111 <
+b0000000000001111 >
+b0000000000011110 ?
+b0000000000011110 B
+b0000000000001111 C
+b0000000000011110 H
+b0000000000001111 J
+b0000000000011110 L
+b0000000000001111 M
+b0000000000001111 P
+1R
+0T
+b0000000000001111 V
+b000000000 W
+0Y
+b000000000 Z
+1[
+1a
+1g
+1m
+0o
+b0000000000001111 q
+b0000000000001111 r
+1s
+1y
+1""
+1("
+1."
+b0000000000001111 8"
+b0000000000001111 >"
+1?"
+b0000000000001111 @"
+1E"
+b0000000000011110 F"
+b0000000000011110 G"
+b0000000000000000 H"
+b0000000000011110 I"
+b0000000000001111 K"
+b0000000000000000 L"
+b0000000000001111 M"
+b0000000000011110 N"
+b0000000000000000 O"
+b0000000000001111 P"
+b0000000000011110 S"
+1T"
+b0000000000011110 U"
+#700000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#750000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#800000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#850000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#900000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#950000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1000000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1050000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1100000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1150000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1200000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1250000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1300000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1350000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1400000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1450000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1500000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1550000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1600000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1650000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1700000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1750000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1800000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1850000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#1900000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#1950000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2000000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2050000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2100000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2150000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2200000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2250000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2300000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2350000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2400000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2450000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2500000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2550000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2600000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2650000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2700000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2750000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2800000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2850000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#2900000000
+0!
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#2950000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#3000000000
+0!
+1.
+00
+0R
+0[
+0a
+0g
+0m
+0s
+0y
+0""
+0("
+0."
+0?"
+0T"
+#3050000000
+1!
+10
+1R
+1[
+1a
+1g
+1m
+1s
+1y
+1""
+1("
+1."
+1?"
+1T"
+#3100000000

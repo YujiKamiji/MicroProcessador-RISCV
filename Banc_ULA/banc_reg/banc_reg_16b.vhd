@@ -23,7 +23,7 @@ architecture arch of banc_reg_16b is
         );
     end component;
 
-    component Demux_9x1 is
+    component Demux_1x9 is
         port(
             selector: in unsigned(3 downto 0);
             enable_in: in std_logic;
@@ -45,8 +45,8 @@ architecture arch of banc_reg_16b is
     type reg_array is array(0 to 8) of unsigned(15 downto 0);
     signal reg_aux: reg_array := (others => (others => '0'));
 begin
-    demux: Demux_9x1 
-        port(
+    demux: Demux_1x9 
+        port map(
             selector => selector,
             enable_in => wr_enable,
             we => we_aux

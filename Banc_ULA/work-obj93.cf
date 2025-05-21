@@ -1,0 +1,31 @@
+v 4
+file . "banc_reg/banc_reg_16b_tb.vhd" "ea28f6e70b2a34645bb545a6e4dca7e168d645c4" "20250521204941.360":
+  entity banc_ula_tb at 1( 0) + 0 on 89;
+  architecture behavioral of banc_ula_tb at 8( 110) + 0 on 90;
+file . "ULA/ULA.vhd" "140894060367fc580dd49f9765e73ef0043881bf" "20250521204941.338":
+  entity ula at 1( 0) + 0 on 85;
+  architecture arch of ula at 18( 412) + 0 on 86;
+file . "registrador/reg_16b.vhd" "7ba24bf82cc1b67d9cdd51e904c922da1972de3f" "20250521204941.317":
+  entity reg_16b at 1( 0) + 0 on 81;
+  architecture arch of reg_16b at 15( 292) + 0 on 82;
+file . "DeMuxes/Mux_4x1.vhd" "bf130c99bd0fa26f5e05de7ea1f53af4658bdd06" "20250521204941.297":
+  entity mux_4x1 at 1( 0) + 0 on 77;
+  architecture arch of mux_4x1 at 13( 262) + 0 on 78;
+file . "DeMuxes/Mux_2x1.vhd" "60e9958a4531a8f34731e871a0d2aff2bdb186a8" "20250521204941.277":
+  entity mux_2x1 at 1( 0) + 0 on 73;
+  architecture arch of mux_2x1 at 13( 243) + 0 on 74;
+file . "DeMuxes/Demux_1x9.vhd" "1272597a478c2afbbcc65e06a09e122f8ac93f2b" "20250521204941.268":
+  entity demux_1x9 at 1( 0) + 0 on 71;
+  architecture arch of demux_1x9 at 13( 237) + 0 on 72;
+file . "DeMuxes/Mux_3x1.vhd" "00c0908ca5dc52057dbabddd4ca5266a691dbb2a" "20250521204941.288":
+  entity mux_3x1 at 1( 0) + 0 on 75;
+  architecture arch of mux_3x1 at 13( 259) + 0 on 76;
+file . "DeMuxes/Mux_9x1.vhd" "f016a6153ad441ecb7c148a7d44c79b462a8c312" "20250521204941.308":
+  entity mux_9x1 at 1( 0) + 0 on 79;
+  architecture arch of mux_9x1 at 13( 275) + 0 on 80;
+file . "banc_reg/banc_reg_16b.vhd" "287a84f3f227de37ab5495a043d66325dbd7599a" "20250521204941.327":
+  entity banc_reg_16b at 1( 0) + 0 on 83;
+  architecture arch of banc_reg_16b at 16( 347) + 0 on 84;
+file . "Banc_ULA.vhd" "821503545f610f4bbbb227c8f07ea6dc3d7ee242" "20250521204941.349":
+  entity banc_ula at 1( 0) + 0 on 87;
+  architecture arch of banc_ula at 24( 752) + 0 on 88;

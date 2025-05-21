@@ -12,7 +12,7 @@ end Mux_2x1;
 
 architecture arch of Mux_2x1 is
 begin
-    result <= ent1 when selector_key = "0" else
-              ent2 when selector_key = "1" else
+    result <= ent1 when selector_key = '0' else
+              ent2 when selector_key = '1' else
               "0000000000000000";
 end arch;

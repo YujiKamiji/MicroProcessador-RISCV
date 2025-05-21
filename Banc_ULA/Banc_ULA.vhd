@@ -12,6 +12,7 @@ entity Banc_ULA is
         cmpi_control: in std_logic;
         load_value: in unsigned(15 downto 0);     
         wr_reg_enable: in std_logic;
+        wr_ac_enable: in std_logic;
         reset: in std_logic;                                     
         flag_zero: out std_logic;
         flag_carry: out std_logic;
@@ -63,6 +64,7 @@ architecture arch of Banc_ULA is
             selector_key: in std_logic;
             result: out unsigned(15 downto 0)
         );
+    end component;
     
     component Mux_3x1
         Port (
@@ -70,6 +72,7 @@ architecture arch of Banc_ULA is
             selector_key: in unsigned(1 downto 0);
             result: out unsigned(15 downto 0)
         );
+    end component;
 
     -- Sinais internos
     signal out_banco   : unsigned(15 downto 0);
@@ -133,7 +136,7 @@ begin
         port map(
             CLK        => clk,
             input      => in_ac,            
-            wr_enable  => '1',    
+            wr_enable  => wr_ac_enable,    
             reset => reset,    
             output     => ac_out               
         );
