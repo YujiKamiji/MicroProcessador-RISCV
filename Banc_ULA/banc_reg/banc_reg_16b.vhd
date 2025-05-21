@@ -8,6 +8,7 @@ entity banc_reg_16b is
         clk: in std_logic;
         reg_wr: in unsigned(15 downto 0);
         wr_enable: in std_logic;
+        reset: in std_logic;
         reg_out: out unsigned(15 downto 0)
     );
 end banc_reg_16b;
@@ -32,9 +33,10 @@ architecture arch of banc_reg_16b is
 
     component reg_16b is
         port(
-            CLK: in std_logic;
+            clk: in std_logic;
             input: in unsigned(15 downto 0);
             wr_enable: in std_logic;
+            reset: in std_logic;
             output: out unsigned(15 downto 0)
         );
     end component;
@@ -52,73 +54,82 @@ begin
 
     r0: reg_16b
         port map(
-            CLK => clk,
+            clk => clk,
             input => reg_wr,
             wr_enable => we_aux(0),
+            reset => reset,
             output => reg_aux(0)
         );
     
     r1: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(1),
+        reset => reset,
         output => reg_aux(1)
     );
 
     r2: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(2),
+        reset => reset,
         output => reg_aux(2)
     );
 
     r3: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(3),
+        reset => reset,
         output => reg_aux(3)
     );
 
     r4: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(4),
+        reset => reset,
         output => reg_aux(4)
     );
 
     r5: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(5),
+        reset => reset,
         output => reg_aux(5)
     );
 
     r6: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(6),
+        reset => reset,
         output => reg_aux(6)
     );
 
     r7: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(7),
+        reset => reset,
         output => reg_aux(7)
     );
 
     r8: reg_16b
     port map(
-        CLK => clk,
+        clk => clk,
         input => reg_wr,
         wr_enable => we_aux(8),
+        reset => reset,
         output => reg_aux(8)
     );
 

@@ -4,9 +4,10 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity reg_16b is
     Port (
-        CLK: in std_logic;
+        clk: in std_logic;
         input: in unsigned(15 downto 0);
         wr_enable: in std_logic;
+        reset: in std_logic;
         output: out unsigned(15 downto 0)
     );
 end reg_16b;
@@ -17,11 +18,15 @@ signal data: unsigned(15 downto 0):= (others => '0');
 
 begin
 
-    process(CLK) 
+    process(clk) 
     begin
-        if rising_edge(CLK) then
-            if wr_enable = '1' then
-                data <= input;
+        if rising_edge(clk) then
+            if reset = '0' then
+                if wr_enable = '1' then
+                    data <= input;
+                end if;
+            else
+                data <= (others => '0');
             end if;
         end if;
     end process;
