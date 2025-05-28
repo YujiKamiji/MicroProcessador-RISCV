@@ -7,7 +7,7 @@ entity fsm_estado is
         reset : in  std_logic;
         estado : out std_logic
     );
-end entity;
+end fsm_estado;
 
 architecture behavior of fsm_estado is
     signal estado_s : std_logic := '0';  -- estado interno (0: fetch, 1: execute)

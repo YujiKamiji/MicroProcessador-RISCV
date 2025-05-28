@@ -8,7 +8,7 @@ entity rom is
         endereco : in  unsigned(6 downto 0);   -- 7 bits para 128 endereços
         dado     : out unsigned(18 downto 0)   -- 19 bits de largura
     );
-end entity;
+end rom;
 
 architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(18 downto 0);
