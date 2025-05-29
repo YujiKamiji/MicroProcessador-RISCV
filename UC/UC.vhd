@@ -15,6 +15,7 @@ entity UC is
         flag_carry_out: out std_logic;
         --sinais de saida
         jump_en: out std_logic;
+        pc_write : out std_logic
     );
 end UC;
 
@@ -45,7 +46,7 @@ begin
     opcode <= instr(18 downto 13);
     --Atribuicao de sinais
 
-    jump_en <= '1' when opcode = "110011" and state = '1' else '0'
+    jump_en <= '1' when opcode = "110011" and state = '1' else '0';
     
     --Registradores das flags(O pdf diz que pode ficar dentro da UC)
     process(clk)
@@ -58,5 +59,7 @@ begin
 
     flag_zero_out <= flag_zero_reg;
     flag_carry_out <= flag_carry_reg;
+
+    pc_write <= '1' when state ='1' else '0';
 
 end arch;

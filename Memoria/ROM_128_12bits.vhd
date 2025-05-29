@@ -13,9 +13,9 @@ end rom;
 architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(18 downto 0);
     constant conteudo_rom : mem := (
-        -- Exemplo de instruções codificadas em 19 bits (ajuste conforme seu formato)
-        0  => "1100110000000000100",  -- NOP fictício
-        1  => "1000000000000000000",  -- JUMP fictício
+       
+        0  => "1100110000000000100",  
+        1  => "1000000000000000000",  
         2  => "0000000000000000000",
         3  => "0000000000000000000",
         4  => "1000000000000000000",
@@ -25,7 +25,6 @@ architecture a_rom of rom is
         8  => "0000000000000000010",
         9  => "0000000000000000000",
         10 => "0000000000000000000",
-        -- Restante zerado
         others => (others => '0')
     );
 begin
