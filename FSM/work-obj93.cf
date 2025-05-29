@@ -1,0 +1,7 @@
+v 4
+file . "fsm_estado.vhd" "c227f7458b4073115355999d6fc25c497a54c0ed" "20250528213240.023":
+  entity fsm_estado at 1( 0) + 0 on 19;
+  architecture behavior of fsm_estado at 12( 189) + 0 on 20;
+file . "fsm_estado_tb.vhd" "0da860fdc4aab63296f3195834a235c9ee9ba5d5" "20250528213240.023":
+  entity tb_fsm_estado at 1( 0) + 0 on 21;
+  architecture sim of tb_fsm_estado at 7( 81) + 0 on 22;
