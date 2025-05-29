@@ -1,7 +1,0 @@
-v 4
-file . "ROM_128_12bits_tb.vhd" "29a5ef7c980c98f48fe9f7b12f4e4515633f9e28" "20250528211600.910":
-  entity tb_rom at 1( 0) + 0 on 29;
-  architecture sim of tb_rom at 8( 100) + 0 on 30;
-file . "ROM_128_12bits.vhd" "fceeef03b15b319d67ba2acc31382c9ee27a9167" "20250528211600.909":
-  entity rom at 1( 0) + 0 on 27;
-  architecture a_rom of rom at 13( 295) + 0 on 28;

@@ -31,14 +31,14 @@ begin
     -- Geração de clock: 10 ns por ciclo
     clk_process: process
     begin
-        while now < 200 ns loop
+        while now < 300 ns loop
             clk <= '0'; wait for 5 ns;
             clk <= '1'; wait for 5 ns;
         end loop;
         wait;
     end process;
 
-    -- Reset ativo por 10 ns no início
+    -- Reset ativo no início (0–10 ns)
     reset_process: process
     begin
         reset <= '1'; wait for 10 ns;

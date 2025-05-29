@@ -1,19 +1,22 @@
 v 4
-file . "../Banc_ULA/registrador/reg_16b.vhd" "7ba24bf82cc1b67d9cdd51e904c922da1972de3f" "20250528223113.984":
-  entity reg_16b at 1( 0) + 0 on 23;
-  architecture arch of reg_16b at 15( 292) + 0 on 24;
-file . "../PC/somador_pc.vhd" "6679ad5681bcd98f9a33a2a9e448789869120a66" "20250528223113.984":
-  entity somador_pc at 1( 0) + 0 on 25;
-  architecture arch of somador_pc at 13( 238) + 0 on 26;
-file . "../PC/pc.vhd" "ce7e867ad79981e667c193e5a6c3105c4347a0c1" "20250528223113.985":
-  entity pc at 1( 0) + 0 on 27;
-  architecture arch of pc at 14( 256) + 0 on 28;
-file . "../Memoria/ROM_128_12bits.vhd" "4aef876a151d58c41d1270b52026ea5a249dbf88" "20250528223113.985":
-  entity rom at 1( 0) + 0 on 29;
-  architecture a_rom of rom at 13( 292) + 0 on 30;
-file . "top_pc_rom.vhd" "2915c80a508215d595d2a8415c881d9f6b74e514" "20250528223113.985":
-  entity top_pc_rom at 1( 0) + 0 on 31;
-  architecture pc_rom of top_pc_rom at 13( 241) + 0 on 32;
-file . "tb/top_pc_rom_tb.vhd" "0f5f4005a8b2a4d43546a73bd5f89c0e00d519f7" "20250528223113.986":
-  entity top_pc_rom_tb at 1( 0) + 0 on 33;
-  architecture sim of top_pc_rom_tb at 8( 107) + 0 on 34;
+file . "tb/top_pc_rom_tb.vhd" "7fe1dd598510943d1491caa43eb6743987d992fc" "20250529003625.107":
+  entity top_pc_rom_tb at 1( 0) + 0 on 23;
+  architecture sim of top_pc_rom_tb at 8( 107) + 0 on 24;
+file . "top_pc_rom.vhd" "ab406410a449b68324ff5e6290f98a84fa33bd3e" "20250529003625.107":
+  entity top_pc_rom at 1( 0) + 0 on 21;
+  architecture pc_rom of top_pc_rom at 13( 242) + 0 on 22;
+file . "../Memoria/ROM_128_12bits.vhd" "4aef876a151d58c41d1270b52026ea5a249dbf88" "20250529003625.107":
+  entity rom at 1( 0) + 0 on 19;
+  architecture a_rom of rom at 13( 292) + 0 on 20;
+file . "../PC/pc.vhd" "87ce092ecd967f6242a92145c1cfef48ea0d6f29" "20250529003625.106":
+  entity pc at 1( 0) + 0 on 17;
+  architecture arch of pc at 17( 399) + 0 on 18;
+file . "../PC/somador_pc.vhd" "6679ad5681bcd98f9a33a2a9e448789869120a66" "20250529003625.106":
+  entity somador_pc at 1( 0) + 0 on 15;
+  architecture arch of somador_pc at 13( 238) + 0 on 16;
+file . "../Banc_ULA/DeMuxes/Mux_2x1.vhd" "60e9958a4531a8f34731e871a0d2aff2bdb186a8" "20250529003625.105":
+  entity mux_2x1 at 1( 0) + 0 on 13;
+  architecture arch of mux_2x1 at 13( 243) + 0 on 14;
+file . "../Banc_ULA/registrador/reg_16b.vhd" "7ba24bf82cc1b67d9cdd51e904c922da1972de3f" "20250529003625.105":
+  entity reg_16b at 1( 0) + 0 on 11;
+  architecture arch of reg_16b at 15( 292) + 0 on 12;
