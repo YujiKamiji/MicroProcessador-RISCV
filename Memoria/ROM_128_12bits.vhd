@@ -14,13 +14,13 @@ architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(18 downto 0);
     constant conteudo_rom : mem := (
         -- Exemplo de instruções codificadas em 19 bits (ajuste conforme seu formato)
-        0  => "0000000000000000001",  -- NOP fictício
+        0  => "1100110000000000100",  -- NOP fictício
         1  => "1000000000000000000",  -- JUMP fictício
         2  => "0000000000000000000",
         3  => "0000000000000000000",
         4  => "1000000000000000000",
         5  => "0000000000000000010",
-        6  => "1111000000000000011",
+        6  => "1100110000000000000",
         7  => "0000000000000000010",
         8  => "0000000000000000010",
         9  => "0000000000000000000",
