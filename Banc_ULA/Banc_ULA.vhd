@@ -13,10 +13,12 @@ entity Banc_ULA is
         load_value: in unsigned(15 downto 0);     
         wr_reg_enable: in std_logic;
         wr_ac_enable: in std_logic;
-        reset: in std_logic;                                     
+        reset: in std_logic;        
+        flag_carry_in_sub: in std_logic;
+        flag_carry_in_add: in std_logic;                             
         flag_zero: out std_logic;
-        flag_carry: out std_logic;
-        reg_read_out: out unsigned(15 downto 0); 
+        flag_carry_out_add: out std_logic;
+        flag_carry_out_sub: out std_logic;
         ac_value: out unsigned(15 downto 0)                      
     );
 end Banc_ULA;
@@ -30,8 +32,10 @@ architecture arch of Banc_ULA is
             ent1: in unsigned(15 downto 0);
             ac: in unsigned(15 downto 0);
             op_code: in unsigned(1 downto 0);
-            flag_carry_in: in std_logic;
-            flag_carry_out: out std_logic;
+            flag_carry_in_sub: in std_logic;
+            flag_carry_out_sub: out std_logic;
+            flag_carry_in_add: in std_logic;
+            flag_carry_out_add: out std_logic;
             flag_zero_out: out std_logic;
             res: out unsigned(15 downto 0)
         );
@@ -125,8 +129,10 @@ begin
             ent1       => in_ula,
             ac         => ac_out,
             op_code    => op_code,
-            flag_carry_in => '0',
-            flag_carry_out => flag_carry,
+            flag_carry_in_sub => flag_carry_in_sub,
+            flag_carry_out_sub => flag_carry_sub,
+            flag_carry_in_add => flag_carry_in_add,
+            flag_carry_out_add => flag_carry_add,
             flag_zero_out  => flag_zero,
             res        => dado_ula              -- saída da ULA (vai pro acumulador)
         );
