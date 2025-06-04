@@ -81,7 +81,7 @@ begin
     load_control_banco <= '1' when opcode = "0110" else '0';
 
     --cmpi control
-    --cmpi 1111(opcode) (10 downto 0)(imediato) addi 1001(opcode)(14 downto 11)(endereço) subi 1011(opcode) (14 downto 11)(endereço)
+    --cmpi 1111(opcode) (10 downto 0)(imediato) addi 1001(opcode)(10 downto 0)(imediato) subi 1011(opcode) (10 downto 0)(imediato)
     cmpi_control <= '1' when opcode = "1111" or opcode = "1001" or opcode = "1011" else '0';
 
     --write ac enable
