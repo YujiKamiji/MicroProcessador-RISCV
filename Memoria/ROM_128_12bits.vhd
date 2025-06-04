@@ -21,7 +21,7 @@ architecture a_rom of rom is
         4  => "1010010100000000000", --move o conteudo do ac para r5
         5  => "1000010100000000000", --move o conteudo de r5 para o ac (para conseguir subtrair 1)
         6  => "1011000000000000001", --subtrai 1 do ac(r5) e guarda no ac
-        7  => "1000001100000000000", --move o conteudo de ac para r5
+        7  => "1010010100000000000", --move o conteudo de ac para r5
         8  => "0010001010000000000", --jump o endereco 20
         9  => "0110010100000000000", --carrega r5 com 0 (nao vai ser executada)
         20 => "1000010100000000000", --move o conteudo de r5 para o ac (para conseguir mover o r5 no r3)
