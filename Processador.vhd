@@ -19,7 +19,7 @@ architecture arch of Processador is
             load_control_banco: in std_logic;
             load_control_ac: in unsigned(1 downto 0);
             cmpi_control: in std_logic;
-            load_value: in unsigned(15 downto 0);     
+            load_value: in unsigned(10 downto 0);     
             wr_reg_enable: in std_logic;
             wr_ac_enable: in std_logic;
             reset: in std_logic;        
@@ -39,7 +39,7 @@ architecture arch of Processador is
             wr_enable  : in  std_logic;
             seletor    : in  std_logic;
             input_inc  : in  unsigned(6 downto 0);
-            input_jump : in  unsigned(14 downto 0);
+            input_jump : in  unsigned(6 downto 0);
             pc_out     : out unsigned(6 downto 0)
         );
     end component;
@@ -86,10 +86,10 @@ architecture arch of Processador is
         jump_en: out std_logic;
         pc_write : out std_logic;
         load_control_ac: out unsigned(1 downto 0);
-        load_control_banco: std_logic;
-        cmpi_control: std_logic;
-        wr_ac_enable: std_logic;
-        wr_reg_enable: std_logic;
+        load_control_banco: out std_logic;
+        cmpi_control: out std_logic;
+        wr_ac_enable: out std_logic;
+        wr_reg_enable: out std_logic
 
     );
     end component;

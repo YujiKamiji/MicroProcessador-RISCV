@@ -12,7 +12,7 @@ entity flip_flop is
     );
 end flip_flop;
 
-architecture arch of reg_16b is
+architecture arch of flip_flop is
 
 signal data: std_logic:= '0';
 

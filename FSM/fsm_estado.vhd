@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use IEEE.NUMERIC_STD.ALL;
 
 entity fsm_estado is
     port (
@@ -10,7 +11,7 @@ entity fsm_estado is
 end fsm_estado;
 
 architecture behavior of fsm_estado is
-    signal estado_s : std_logic := '0';  -- estado interno (0: fetch, 1: execute)
+    signal estado_s : unsigned(1 downto 0):= (others => '0');  -- estado interno (0: fetch, 1: execute)
 begin
     process(clk, reset)
     begin

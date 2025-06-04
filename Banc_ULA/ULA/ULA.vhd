@@ -31,11 +31,16 @@ architecture arch of ULA is
     signal mux_out: unsigned(15 downto 0);
     signal and_op: unsigned(15 downto 0);
     signal result_carry_add, result_carry_sub: unsigned(16 downto 0);
+    signal carry_add_16 : unsigned(15 downto 0);
+    signal carry_sub_16 : unsigned(15 downto 0);
 begin
     --Soma e sub
-    soma <= ac + ent1 + unsigned("000000000000000" & flag_carry_in_add);
-    sub <= ac - ent1 - unsigned("000000000000000" & flag_carry_in_sub);
-    
+    carry_add_16 <= (15 downto 1 => '0') & flag_carry_in_add;
+    carry_sub_16 <= (15 downto 1 => '0') & flag_carry_in_sub;
+
+    soma <= ac + ent1 + carry_add_16;
+    sub  <= ac - ent1 - carry_sub_16;
+
     --Verificacao carry
     --carry add
     result_carry_add <= ("0" & ac) + ("0" & ent1);

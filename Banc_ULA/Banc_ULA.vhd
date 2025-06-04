@@ -133,9 +133,9 @@ begin
             ac         => ac_out,
             op_code    => op_code,
             flag_carry_in_sub => flag_carry_in_sub,
-            flag_carry_out_sub => flag_carry_sub,
+            flag_carry_out_sub => flag_carry_out_sub,
             flag_carry_in_add => flag_carry_in_add,
-            flag_carry_out_add => flag_carry_add,
+            flag_carry_out_add => flag_carry_out_add,
             flag_zero_out  => flag_zero,
             res        => dado_ula              -- saída da ULA (vai pro acumulador)
         );
