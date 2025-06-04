@@ -8,11 +8,13 @@ entity UC is
         reset: in std_logic;
         --flags in
         flag_zero_in: in std_logic;
-        flag_carry_in: in std_logic;
+        flag_carry_in_sub: in std_logic;
+        flag_carry_in_add: in std_logic;
         clk: in std_logic;
         --flags out
         flag_zero_out: out std_logic;
-        flag_carry_out: out std_logic;
+        flag_carry_out_sub: out std_logic;
+        flag_carry_out_add: out std_logic;
         --sinais de saida
         jump_en: out std_logic;
         pc_write : out std_logic
@@ -21,7 +23,8 @@ end UC;
 
 architecture arch of UC is
 signal flag_zero_reg: std_logic:= '0';
-signal flag_carry_reg: std_logic:= '0';
+signal flag_carry_add_reg: std_logic:= '0';
+signal flag_carry_sub_reg: std_logic:= '0';
 signal opcode: unsigned(5 downto 0);
 
 component fsm_estado 
@@ -53,12 +56,14 @@ begin
     begin
         if(rising_edge(clk)) then
             flag_zero_reg <= flag_zero_in;
-            flag_carry_reg <= flag_carry_in;
+            flag_carry_sub_reg <= flag_carry_in_sub;
+            flag_carry_add_reg <= flag_carry_in_add;
         end if;
     end process;
 
     flag_zero_out <= flag_zero_reg;
-    flag_carry_out <= flag_carry_reg;
+    flag_carry_out_add <= flag_carry_add_reg;
+    flag_carry_out_sub <= flag_carry_sub_reg;
 
     pc_write <= '1' when state ='1' else '0';
 
