@@ -5,7 +5,7 @@ entity fsm_estado is
     port (
         clk   : in  std_logic;
         reset : in  std_logic;
-        estado : out std_logic
+        estado : out unsigned(1 downto 0)
     );
 end fsm_estado;
 
@@ -15,9 +15,13 @@ begin
     process(clk, reset)
     begin
         if reset = '1' then
-            estado_s <= '0';             -- volta para estado fetch
+            estado_s <= "00";             -- volta para estado fetch
         elsif rising_edge(clk) then
-            estado_s <= not estado_s;    -- alterna estado a cada clock
+            if estado_s <= "01" then
+                estado_s <= estado_s + 1;
+            else
+                estado_s <= "00";
+            end if;
         end if;
     end process;
 

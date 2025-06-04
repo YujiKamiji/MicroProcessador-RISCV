@@ -17,7 +17,13 @@ entity UC is
         flag_carry_out_add: out std_logic;
         --sinais de saida
         jump_en: out std_logic;
-        pc_write : out std_logic
+        pc_write : out std_logic;
+        load_control_ac: out unsigned(1 downto 0);
+        load_control_banco: out std_logic;
+        cmpi_control: out std_logic;
+        wr_ac_enable: out std_logic;
+        wr_reg_enable: out std_logic;
+        instr_out: out unsigned(18 downto 0)
     );
 end UC;
 
@@ -31,11 +37,12 @@ component fsm_estado
     port (
         clk   : in  std_logic;
         reset : in  std_logic;
-        estado : out std_logic
+        estado : out unsigned(1 downto 0)
     );
 end component;
 
-signal state: std_logic;
+signal state: unsigned(1 downto 0);
+signal wr_reg_enable: 
 
 begin
     --State machine
@@ -46,10 +53,35 @@ begin
             estado => state
         );
 
-    opcode <= instr(18 downto 13);
+    opcode <= instr(18 downto 16);
     --Atribuicao de sinais
 
-    jump_en <= '1' when opcode = "110011" and state = '1' else '0';
+    -- jump 111(opcode) (15 downto 0)(endereço)
+    jump_en <= '1' when opcode = "111" and state = "10" else '0';
+
+    --load control do acumulador
+    -- operacoes da ula, opcode == 00 01 10
+    load_control_ac <= "00" when (opcode = "100" or opcode = "010" or opcode = "000") and state = "10";
+    -- load 001(opcode) (15 downto 8)(endereço) (7 downto 0) imediato
+    load_control_ac <= "01" when opcode = "001" and instr(15) = '1';
+    -- MV 011(opcode) (15 downto 8)(endereco do AC ou reg) (7 downto 0)(endereco do AC ou reg) o bit mais sign de cada end diz se é ac ou nao
+    load_control_ac <= "10" when opcode = "011" and instr(15) = '1';
+
+    --load control banco
+    --load 001(opcode) (15 downto 8)(endereço) (7 downto 0)(imediato)
+    load_control_banco <= '1' when opcode = "001" and instr(15) = '0' else '0';
+
+    --cmpi control
+    --cmpi 101(opcode) (15 downto 0)(imediato)
+    cmpi_control <= '1' when opcode = "101" else '0'
+
+    --write ac enable
+    wr_ac_enable <= '1' when state = "10" else '0';
+
+    --write reg enable
+
+    wr_reg_enable <= '1' when state = "10" else '0';
+
     
     --Registradores das flags(O pdf diz que pode ficar dentro da UC)
     process(clk)
@@ -65,6 +97,7 @@ begin
     flag_carry_out_add <= flag_carry_add_reg;
     flag_carry_out_sub <= flag_carry_sub_reg;
 
-    pc_write <= '1' when state ='1' else '0';
+    pc_write <= '1' when state = "10" else '0';
+    opcode_out <= opcode;
 
 end arch;

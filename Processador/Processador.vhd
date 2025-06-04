@@ -60,17 +60,27 @@ architecture arch of Processador is
     end component;
 
     component UC
-        port (
-            instr           : in  unsigned(18 downto 0);
-            reset           : in  std_logic;
-            flag_zero_in    : in  std_logic;
-            flag_carry_in   : in  std_logic;
-            clk             : in  std_logic;
-            flag_zero_out   : out std_logic;
-            flag_carry_out  : out std_logic;
-            jump_en         : out std_logic;
-            pc_write        : out std_logic
-        );
+        Port (
+        instr: in unsigned(18 downto 0);
+        reset: in std_logic;
+        --flags in
+        flag_zero_in: in std_logic;
+        flag_carry_in_sub: in std_logic;
+        flag_carry_in_add: in std_logic;
+        clk: in std_logic;
+        --flags out
+        flag_zero_out: out std_logic;
+        flag_carry_out_sub: out std_logic;
+        flag_carry_out_add: out std_logic;
+        --sinais de saida
+        jump_en: out std_logic;
+        pc_write : out std_logic;
+        load_control_ac: out unsigned(1 downto 0);
+        load_control_banco: std_logic;
+        cmpi_control: std_logic;
+        wr_ac_enable: std_logic;
+        wr_reg_enable: std_logic;
+    );
     end component;
 
     -- Sinais internos
@@ -89,6 +99,7 @@ architecture arch of Processador is
     signal wr_ac_enable_s: std_logic;
     signal wr_reg_enable_s: std_logic;
     signal ac_value_s: unsigned(15 downto 0);
+    signal instr_out_s: unsigned(2 downto 0);
 
     -- Flags (sem nada por enquanto)
     signal flag_zero_in_s  : std_logic := '0';
@@ -140,7 +151,13 @@ begin
             flag_carry_out_sub  => flag_carry_out_sub_s,
             flag_carry_out_add  => flag_carry_out_add_s,
             jump_en         => jump_en_s,
-            pc_write        => pc_write_s
+            pc_write        => pc_write_s,
+            load_control_ac => load_control_ac_s,
+            load_control_banco => load_control_banco_s,
+            cmpi_control => cmpi_control_s,
+            wr_ac_enable => wr_ac_enable_s,
+            wr_reg_enable => wr_reg_enable_s,
+            instr_out => instr_out_s
         );
 
    banco_ula: Banc_ULA 
@@ -165,6 +182,8 @@ begin
 
     -- Extrai endereço de salto da ROM
     input_jump_s <= dado_rom_s(14 downto 0);
+
+    reg_selecto_s <= dado_rom_s(16 downto 13);
 
     opcode_ula <= dado_rom_s(18 downto 17); --Ainda nao defini nada, peguei 2 bits random do opcode para ser o seletor da ULA
 
