@@ -155,3 +155,21 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 - Os registradores são codificados em 4 bits (de `0000` a `1000`, ou R0 a R8).
 - Os imediatos são valores de 11 bits (de `0` a `2047`).
 - Instruções que não usam todos os bits devem preencher os restantes com zeros.
+
+## Código em Assembly:
+
+0:  LOADREG R3, 5            ; R3 ← 5
+1:  LOADREG R4, 8            ; R4 ← 8
+2:  MOVREG R3                ; AC ← R3
+3:  ADD R4                   ; AC ← AC + R4  (AC = R3 + R4)
+4:  MOVAC R5                 ; R5 ← AC       (R5 = R3 + R4)
+5:  MOVREG R5                ; AC ← R5       (prepara para subtrair 1)
+6:  SUBI 1                   ; AC ← AC - 1
+7:  MOVAC R5                 ; R5 ← AC       (atualiza R5 com R5 - 1)
+8:  JUMP 20                  ; Vai para o endereço 20
+9:  LOADREG R5, 0            ; (não executado)
+
+20: MOVREG R5                ; AC ← R5
+21: MOVAC R3                 ; R3 ← AC       (R3 ← R5)
+22: JUMP 2                   ; Volta para somar novamente
+23: LOADREG R3, 0            ; (não executado)
