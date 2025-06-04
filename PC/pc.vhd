@@ -9,7 +9,7 @@ entity pc is
         wr_enable  : in  std_logic;
         seletor    : in  std_logic;
         input_inc  : in  unsigned(6 downto 0);
-        input_jump : in  unsigned(14 downto 0);
+        input_jump : in  unsigned(6 downto 0);
         pc_out     : out unsigned(6 downto 0)
     );
 end entity;
@@ -43,8 +43,8 @@ begin
     ent1_ext(6 downto 0)  <= input_inc;
     ent1_ext(15 downto 7) <= (others => '0');
 
-    ent2_ext(14 downto 0) <= input_jump;
-    ent2_ext(15)          <= '0';
+    ent2_ext(6 downto 0) <= input_jump;
+    ent2_ext(15 downto 7) <= (others => '0');
 
     mux_inst: Mux_2x1
         port map (

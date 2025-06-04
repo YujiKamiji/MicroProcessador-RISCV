@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity Processador is
     Port (
         clk: in std_logic;
-        reset: in std_logic;
+        reset: in std_logic
     );
 end Processador;
 
@@ -58,6 +58,16 @@ architecture arch of Processador is
             saida   : out unsigned(6 downto 0)
         );
     end component;
+    
+    component reg_19b 
+        Port (
+            clk: in std_logic;
+            input: in unsigned(18 downto 0);
+            wr_enable: in std_logic;
+            reset: in std_logic;
+            output: out unsigned(18 downto 0)
+        );
+    end component;
 
     component UC
         Port (
@@ -80,6 +90,7 @@ architecture arch of Processador is
         cmpi_control: std_logic;
         wr_ac_enable: std_logic;
         wr_reg_enable: std_logic;
+
     );
     end component;
 
@@ -88,18 +99,18 @@ architecture arch of Processador is
     signal dado_rom_s   : unsigned(18 downto 0);
     signal input_inc_s  : unsigned(6 downto 0);
     signal jump_en_s    : std_logic;
-    signal input_jump_s : unsigned(14 downto 0);
+    signal input_jump_s : unsigned(6 downto 0);
     signal pc_write_s   : std_logic;
     signal opcode_ula: unsigned(1 downto 0);
     signal reg_selector_s: unsigned(3 downto 0);
     signal load_control_ac_s: unsigned(1 downto 0);
     signal load_control_banco_s: std_logic;
     signal cmpi_control_s: std_logic;
-    signal load_value_s: unsigned(15 downto 0);
+    signal load_value_s: unsigned(10 downto 0);
     signal wr_ac_enable_s: std_logic;
     signal wr_reg_enable_s: std_logic;
     signal ac_value_s: unsigned(15 downto 0);
-    signal instr_out_s: unsigned(2 downto 0);
+    signal instr_out_s: unsigned(18 downto 0);
 
     -- Flags (sem nada por enquanto)
     signal flag_zero_in_s  : std_logic := '0';
@@ -138,10 +149,19 @@ begin
             saida   => input_inc_s
         );
 
+    reg_instr: reg_19b 
+        port map(
+            clk => clk,
+            input => dado_rom_s,
+            wr_enable => '1',
+            reset => reset,
+            output => instr_out_s
+        );
+
     -- UC
     uc_inst: UC
         port map (
-            instr           => dado_rom_s,
+            instr           => instr_out_s,
             reset           => reset,
             clk             => clk,
             flag_zero_in    => flag_zero_in_s,
@@ -156,8 +176,7 @@ begin
             load_control_banco => load_control_banco_s,
             cmpi_control => cmpi_control_s,
             wr_ac_enable => wr_ac_enable_s,
-            wr_reg_enable => wr_reg_enable_s,
-            instr_out => instr_out_s
+            wr_reg_enable => wr_reg_enable_s
         );
 
    banco_ula: Banc_ULA 
@@ -181,12 +200,12 @@ begin
         );
 
     -- Extrai endereço de salto da ROM
-    input_jump_s <= dado_rom_s(14 downto 0);
+    input_jump_s <= instr_out_s(14 downto 8);
 
-    reg_selecto_s <= dado_rom_s(16 downto 13);
+    reg_selector_s <= instr_out_s(14 downto 11);
 
-    opcode_ula <= dado_rom_s(18 downto 17); --Ainda nao defini nada, peguei 2 bits random do opcode para ser o seletor da ULA
+    opcode_ula <= instr_out_s(17 downto 16); 
 
-    load_value_s <= dado_rom_s(16 downto 1) --Mesma coisa, ainda nao definido
+    load_value_s <= instr_out_s(10 downto 0);
 
 end arch;

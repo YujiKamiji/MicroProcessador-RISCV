@@ -10,7 +10,7 @@ entity Banc_ULA is
         load_control_banco: in std_logic;
         load_control_ac: in unsigned(1 downto 0);
         cmpi_control: in std_logic;
-        load_value: in unsigned(15 downto 0);     
+        load_value: in unsigned(10 downto 0);     
         wr_reg_enable: in std_logic;
         wr_ac_enable: in std_logic;
         reset: in std_logic;        
@@ -83,13 +83,16 @@ architecture arch of Banc_ULA is
     signal dado_ula     : unsigned(15 downto 0);
     signal ac_out       : unsigned(15 downto 0);
     signal in_banco, in_ac, in_ula: unsigned(15 downto 0);
+    signal load_value_16: unsigned(15 downto 0);
 
 begin
+    load_value_16(10 downto 0) <= load_value;
+    load_value_16(15 downto 11) <= (others => '0');
     -- mux que entra no banco
     mux_banco: Mux_2x1
         port map(
             ent1 => ac_out,
-            ent2 => load_value,
+            ent2 => load_value_16,
             selector_key => load_control_banco,
             result => in_banco
         );
@@ -97,7 +100,7 @@ begin
     mux_ac: Mux_3x1
         port map(
             ent1 => dado_ula,
-            ent2 => load_value,
+            ent2 => load_value_16,
             ent3 => out_banco,
             selector_key => load_control_ac,
             result => in_ac
@@ -106,7 +109,7 @@ begin
     mux_ula: Mux_2x1
         port map(
             ent1 => out_banco,
-            ent2 => load_value,
+            ent2 => load_value_16,
             selector_key => cmpi_control,
             result => in_ula
         );
@@ -147,7 +150,7 @@ begin
             output     => ac_out               
         );
 
-    reg_read_out <= out_banco;
+    
     ac_value     <= ac_out;
         
 end arch;

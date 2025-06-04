@@ -22,8 +22,7 @@ entity UC is
         load_control_banco: out std_logic;
         cmpi_control: out std_logic;
         wr_ac_enable: out std_logic;
-        wr_reg_enable: out std_logic;
-        instr_out: out unsigned(18 downto 0)
+        wr_reg_enable: out std_logic
     );
 end UC;
 
@@ -31,7 +30,7 @@ architecture arch of UC is
 signal flag_zero_reg: std_logic:= '0';
 signal flag_carry_add_reg: std_logic:= '0';
 signal flag_carry_sub_reg: std_logic:= '0';
-signal opcode: unsigned(5 downto 0);
+signal opcode: unsigned(3 downto 0);
 
 component fsm_estado 
     port (
@@ -41,8 +40,18 @@ component fsm_estado
     );
 end component;
 
+component flip_flop 
+    Port (
+        clk: in std_logic;
+        input: std_logic;
+        wr_enable: in std_logic;
+        reset: in std_logic;
+        output: out std_logic
+    );
+end component;
+
 signal state: unsigned(1 downto 0);
-signal wr_reg_enable: 
+ 
 
 begin
     --State machine
@@ -53,51 +62,64 @@ begin
             estado => state
         );
 
-    opcode <= instr(18 downto 16);
+    opcode <= instr(18 downto 15);
     --Atribuicao de sinais
 
-    -- jump 111(opcode) (15 downto 0)(endereço)
-    jump_en <= '1' when opcode = "111" and state = "10" else '0';
+    -- jump 0010(opcode) (14 downto 8)(endereço rom)
+    jump_en <= '1' when opcode = "0010" else '0';
 
     --load control do acumulador
-    -- operacoes da ula, opcode == 00 01 10
-    load_control_ac <= "00" when (opcode = "100" or opcode = "010" or opcode = "000") and state = "10";
-    -- load 001(opcode) (15 downto 8)(endereço) (7 downto 0) imediato
-    load_control_ac <= "01" when opcode = "001" and instr(15) = '1';
-    -- MV 011(opcode) (15 downto 8)(endereco do AC ou reg) (7 downto 0)(endereco do AC ou reg) o bit mais sign de cada end diz se é ac ou nao
-    load_control_ac <= "10" when opcode = "011" and instr(15) = '1';
-
+    with opcode select
+    load_control_ac <= 
+        "00" when "0001" | "0011" | "0101" | "1001" | "1011", -- operacoes da ula, opcode == 0001 0011 0011 (ultimo bit 1) (14 downto 11)(endereço)
+        "01" when "0100", -- loadac 0100(opcode) (10 downto 0) (imediato)
+        "10" when "1000", -- MVac 1000(opcode) (14 downto 11)(endereço) 
+        "00" when others;
+    
     --load control banco
-    --load 001(opcode) (15 downto 8)(endereço) (7 downto 0)(imediato)
-    load_control_banco <= '1' when opcode = "001" and instr(15) = '0' else '0';
+    --load 0110(opcode) (14 downto 11)(endereço) (10 downto 0)(imediato)
+    load_control_banco <= '1' when opcode = "0110" else '0';
 
     --cmpi control
-    --cmpi 101(opcode) (15 downto 0)(imediato)
-    cmpi_control <= '1' when opcode = "101" else '0'
+    --cmpi 1111(opcode) (10 downto 0)(imediato) addi 1001(opcode)(14 downto 11)(endereço) subi 1011(opcode) (14 downto 11)(endereço)
+    cmpi_control <= '1' when opcode = "1111" or opcode = "1001" or opcode = "1011" else '0';
 
     --write ac enable
-    wr_ac_enable <= '1' when state = "10" else '0';
+    wr_ac_enable <= '1' when state = "10" and (opcode = "0001" or opcode = "0011" or opcode = "0101" or opcode = "1001" or opcode = "1011" or opcode = "0100" or opcode = "1000")  else '0';
 
     --write reg enable
+    --MVreg 1010(opcode) (14 downto 11)(endereço)
+    --LOADREG 0110(opcode) (14 downto 11)(endereço) (10 downto 0)(imediato)
+    wr_reg_enable <= '1' when state = "10" and (opcode = "1010" or opcode = "0110") else '0';
 
-    wr_reg_enable <= '1' when state = "10" else '0';
+    flag_zero_ffp: flip_flop
+        port map(
+            clk => clk,
+            input => flag_zero_in,
+            wr_enable => '1',
+            reset => reset,
+            output => flag_zero_out
+        );
 
-    
-    --Registradores das flags(O pdf diz que pode ficar dentro da UC)
-    process(clk)
-    begin
-        if(rising_edge(clk)) then
-            flag_zero_reg <= flag_zero_in;
-            flag_carry_sub_reg <= flag_carry_in_sub;
-            flag_carry_add_reg <= flag_carry_in_add;
-        end if;
-    end process;
+    flag_carry_sub_ffp: flip_flop
+        port map(
+            clk => clk,
+            input => flag_carry_in_sub,
+            wr_enable => '1',
+            reset => reset,
+            output => flag_carry_out_sub
+        );
 
-    flag_zero_out <= flag_zero_reg;
-    flag_carry_out_add <= flag_carry_add_reg;
-    flag_carry_out_sub <= flag_carry_sub_reg;
+    flag_carry_add_ffp: flip_flop
+        port map(
+            clk => clk,
+            input => flag_carry_in_add,
+            wr_enable => '1',
+            reset => reset,
+            output => flag_carry_out_add
+        );
 
     pc_write <= '1' when state = "10" else '0';
-    opcode_out <= opcode;
+    
 
 end arch;
