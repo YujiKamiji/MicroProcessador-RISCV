@@ -13,19 +13,25 @@ end rom;
 architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(18 downto 0);
     constant conteudo_rom : mem := (
-       
-        0  => "1100110000000000100",  
-        1  => "1000000000000000000",  
-        2  => "0000000000000000000",
-        3  => "0000000000000000000",
-        4  => "1000000000000000000",
-        5  => "0000000000000000010",
-        6  => "1100110000000000000",
-        7  => "0000000000000000010",
-        8  => "0000000000000000010",
-        9  => "0000000000000000000",
-        10 => "0000000000000000000",
-        others => (others => '0')
+
+        0  => "0110001100000000101", --carrega r3 com valor 5
+        1  => "0110010000000001000", --carrega r4 com valor 8
+        2  => "1000001100000000000", --move o conteudo de r3 para o ac  
+        3  => "0001010000000000000", --soma ac(r3) com r4 e guarda no ac
+        4  => "1010010100000000000", --move o conteudo do ac para r5
+        5  => "1000010100000000000", --move o conteudo de r5 para o ac (para conseguir subtrair 1)
+        6  => "1011000000000000001", --subtrai 1 do ac(r5) e guarda no ac
+        7  => "1000001100000000000", --move o conteudo de ac para r5
+        8  => "0010001010000000000", --jump o endereco 20
+        9  => "0110010100000000000", --carrega r5 com 0 (nao vai ser executada)
+        20 => "1000010100000000000", --move o conteudo de r5 para o ac (para conseguir mover o r5 no r3)
+        21 => "1010001100000000000", --move do ac(r5) para r3
+        22 => "0010000001000000000", --jump para o endereco 2
+        23 => "0110001100000000000", --carrega r3 com 0 (nao vai ser executada)
+
+        others => "0000000000000000000"
+
+
     );
 begin
     process(clk)
