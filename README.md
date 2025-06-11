@@ -75,7 +75,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ```
 [18:15] Opcode = 1010  
-[14:11] Registrador origem  
+[14:11] Registrador destino 
 [10:0]  Não utilizado (zeros)
 ```
 
@@ -83,7 +83,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ```
 [18:15] Opcode = 1000  
-[14:11] Registrador destino  
+[14:11] Registrador origem  
 [10:0]  Não utilizado (zeros)
 ```
 
@@ -146,6 +146,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 | `MOVREG` | 1100   |
 | `BHI`    | 1010   |
 | `BCC`    | 1110   |
+| `CLEAR`  | 1110   |
 
 ---
 
