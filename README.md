@@ -103,11 +103,19 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ### 6. Instruções de salto (`JUMP`, `BHI`, `BCC`)
 
-**Formato:**
+### `JUMP`
 
 ```
 [18:15] Opcode  
 [14:8]  Endereço de destino (7 bits)  
+[7:0]   Zeros (ou ignorados)
+```
+
+### `BHI e BCC`
+
+```
+[18:15] Opcode  
+[14:7]  Offset  
 [7:0]   Zeros (ou ignorados)
 ```
 
@@ -160,18 +168,17 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ## Código em Assembly:
 
-0:  LOADREG R3, 5            ; R3 ← 5
-1:  LOADREG R4, 8            ; R4 ← 8
+0:  LOADREG R3, 0            ; R3 ← 0 (contador)
+1:  LOADREG R4, 0            ; R4 ← 0 (acumulador)
 2:  MOVREG R3                ; AC ← R3
-3:  ADD R4                   ; AC ← AC + R4  (AC = R3 + R4)
-4:  MOVAC R5                 ; R5 ← AC       (R5 = R3 + R4)
-5:  MOVREG R5                ; AC ← R5       (prepara para subtrair 1)
-6:  SUBI 1                   ; AC ← AC - 1
-7:  MOVAC R5                 ; R5 ← AC       (atualiza R5 com R5 - 1)
-8:  JUMP 20                  ; Vai para o endereço 20
-9:  LOADREG R5, 0            ; (não executado)
+3:  ADD R4                   ; AC ← AC + R4
+4:  MOVREG R4                ; R4 ← AC (soma acumulada)
+5:  MOVREG R3                ; AC ← R3
+6:  ADDI 1                   ; AC ← AC + 1
+7:  MOVREG R3                ; R3 ← AC (incrementa contador)
+8:  LOADAC 30                ; AC ← 30
+9:  CMP R3                   ; Compara R3 com 30
+10: BHI -8                   ; Se R3 < 30, volta para instrução 3
+11: MOVREG R4                ; AC ← R4
+12: MOVAC R5                 ; R5 ← AC (guarda resultado final)
 
-20: MOVREG R5                ; AC ← R5
-21: MOVAC R3                 ; R3 ← AC       (R3 ← R5)
-22: JUMP 2                   ; Volta para somar novamente
-23: LOADREG R3, 0            ; (não executado)
