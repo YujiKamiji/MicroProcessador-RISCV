@@ -29,7 +29,7 @@ begin
     -- O clock alterna entre '0' e '1' a cada 5 ns, totalizando 10 ns por ciclo
     clk_process: process
     begin
-        while now < 2000 ns loop
+        while now < 200000 ns loop
             clk <= '0'; wait for 5 ns;
             clk <= '1'; wait for 5 ns;
         end loop;
