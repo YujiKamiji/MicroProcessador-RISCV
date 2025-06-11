@@ -139,6 +139,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 | `CMP`    | 0111   |
 | `ADDI`   | 1001   |
 | `SUBI`   | 1011   |
+| `CLEAR`  | 1101   |
 | `CMPI`   | 1111   |
 | `LOADAC` | 0100   |
 | `LOADREG`| 0110   |
