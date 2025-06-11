@@ -31,6 +31,7 @@ signal flag_zero_reg: std_logic:= '0';
 signal flag_carry_add_reg: std_logic:= '0';
 signal flag_carry_sub_reg: std_logic:= '0';
 signal opcode: unsigned(3 downto 0);
+signal reset_flags: std_logic;
 
 component fsm_estado 
     port (
@@ -65,7 +66,10 @@ begin
 
     opcode <= instr(18 downto 15);
 
-    wr_enable_flags <= opcode(0);
+    wr_enable_flags <= opcode(0) when opcode /= "1101";
+
+    --Clear das flags
+    reset_flags <= '1' when opcode = "1101";
 
     --Atribuicao de sinais
 
@@ -103,7 +107,7 @@ begin
             clk => clk,
             input => flag_zero_in,
             wr_enable => wr_enable_flags, --atualizar apenas quando instr da ula ou branch
-            reset => reset,
+            reset => reset_flags,
             output => flag_zero_out
         );
 
@@ -112,7 +116,7 @@ begin
             clk => clk,
             input => flag_carry_in_sub,
             wr_enable => wr_enable_flags,
-            reset => reset,
+            reset => reset_flags,
             output => flag_carry_out_sub
         );
 
@@ -121,7 +125,7 @@ begin
             clk => clk,
             input => flag_carry_in_add,
             wr_enable => wr_enable_flags,
-            reset => reset,
+            reset => reset_flags,
             output => flag_carry_out_add
         );
 
