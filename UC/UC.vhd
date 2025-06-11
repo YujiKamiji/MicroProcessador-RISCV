@@ -51,6 +51,7 @@ component flip_flop
 end component;
 
 signal state: unsigned(1 downto 0);
+signal wr_enable_flags: std_logic := '0';
  
 
 begin
@@ -63,10 +64,15 @@ begin
         );
 
     opcode <= instr(18 downto 15);
+
+    wr_enable_flags <= opcode(0);
+
     --Atribuicao de sinais
 
     -- jump 0010(opcode) (14 downto 8)(endereço rom)
-    jump_en <= '1' when opcode = "0010" else '0';
+    -- BHI 1010(opcode) (14 downto 7)(imediato)
+    -- BCC 1110(opcode) (14 downto 7)(imediato)
+    jump_en <= '1' when (opcode = "0010") or (opcode = "1010" and flag_zero_reg = '0' and flag_carry_sub_reg = '0') or (opcode = "1110" and flag_carry_sub_reg = '0') else '0';
 
     --load control do acumulador
     with opcode select
@@ -88,15 +94,15 @@ begin
     wr_ac_enable <= '1' when state = "10" and (opcode = "0001" or opcode = "0011" or opcode = "0101" or opcode = "1001" or opcode = "1011" or opcode = "0100" or opcode = "1000")  else '0';
 
     --write reg enable
-    --MVreg 1010(opcode) (14 downto 11)(endereço)
+    --MVreg 1100(opcode) (14 downto 11)(endereço)
     --LOADREG 0110(opcode) (14 downto 11)(endereço) (10 downto 0)(imediato)
-    wr_reg_enable <= '1' when state = "10" and (opcode = "1010" or opcode = "0110") else '0';
+    wr_reg_enable <= '1' when state = "10" and (opcode = "1100" or opcode = "0110") else '0';
 
     flag_zero_ffp: flip_flop
         port map(
             clk => clk,
             input => flag_zero_in,
-            wr_enable => '1',
+            wr_enable => wr_enable_flags, --atualizar apenas quando instr da ula ou branch
             reset => reset,
             output => flag_zero_out
         );
@@ -105,7 +111,7 @@ begin
         port map(
             clk => clk,
             input => flag_carry_in_sub,
-            wr_enable => '1',
+            wr_enable => wr_enable_flags,
             reset => reset,
             output => flag_carry_out_sub
         );
@@ -114,12 +120,12 @@ begin
         port map(
             clk => clk,
             input => flag_carry_in_add,
-            wr_enable => '1',
+            wr_enable => wr_enable_flags,
             reset => reset,
             output => flag_carry_out_add
         );
 
-    pc_write <= '1' when state = "10" else '0';
+    pc_write <= '1' when state = "11" else '0';
     
 
 end arch;

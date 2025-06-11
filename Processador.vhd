@@ -111,6 +111,9 @@ architecture arch of Processador is
     signal wr_reg_enable_s: std_logic;
     signal ac_value_s: unsigned(15 downto 0);
     signal instr_out_s: unsigned(18 downto 0);
+    signal opcode_s: unsigned(3 downto 0);
+    signal endereco_signed: signed(7 downto 0);
+    signal input_aux: signed(6 downto 0);
 
     -- Flags (sem nada por enquanto)
     signal flag_zero_in_s  : std_logic := '0';
@@ -200,7 +203,18 @@ begin
         );
 
     -- Extrai endereço de salto da ROM
-    input_jump_s <= instr_out_s(14 downto 8);
+    opcode <= instr_out_s(18 downto 15);
+
+    endereco_signed <= signed('0' & endereco_s);
+
+    input_aux <= (unsigned(endereco_signed + signed(instr_out_s(14 downto 7))))(6 downto 0);
+
+
+    with opcode select
+    input_jump_s <= 
+        instr_out_s(14 downto 8) when opcode = "0010",
+        input_aux when opcode = "1010" or opcode = "1110",
+        (others => '0') when others;
 
     reg_selector_s <= instr_out_s(14 downto 11);
 

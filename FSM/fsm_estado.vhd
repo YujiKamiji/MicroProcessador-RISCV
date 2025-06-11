@@ -18,10 +18,10 @@ begin
         if reset = '1' then
             estado_s <= "00";             -- volta para estado fetch
         elsif rising_edge(clk) then
-            if estado_s <= "01" then
-                estado_s <= estado_s + 1;
-            else
+            if estado_s = "11" then
                 estado_s <= "00";
+            else
+                estado_s <= estado_s + 1;
             end if;
         end if;
     end process;

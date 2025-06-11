@@ -143,8 +143,8 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 | `LOADAC` | 0100   |
 | `LOADREG`| 0110   |
 | `MOVAC`  | 1000   |
-| `MOVREG` | 1010   |
-| `BHI`    | 1100   |
+| `MOVREG` | 1100   |
+| `BHI`    | 1010   |
 | `BCC`    | 1110   |
 
 ---
