@@ -69,7 +69,7 @@ begin
     wr_enable_flags <= opcode(0) when opcode /= "1101";
 
     --Clear das flags
-    reset_flags <= '1' when opcode = "1101";
+    reset_flags <= '1' when opcode = "1101" else '0';
 
     --Atribuicao de sinais
 
@@ -106,9 +106,9 @@ begin
         port map(
             clk => clk,
             input => flag_zero_in,
-            wr_enable => wr_enable_flags, --atualizar apenas quando instr da ula ou branch
+            wr_enable => wr_enable_flags, --atualizar apenas quando instr da ula
             reset => reset_flags,
-            output => flag_zero_out
+            output => flag_zero_reg
         );
 
     flag_carry_sub_ffp: flip_flop
@@ -117,7 +117,7 @@ begin
             input => flag_carry_in_sub,
             wr_enable => wr_enable_flags,
             reset => reset_flags,
-            output => flag_carry_out_sub
+            output => flag_carry_sub_reg
         );
 
     flag_carry_add_ffp: flip_flop
@@ -126,10 +126,14 @@ begin
             input => flag_carry_in_add,
             wr_enable => wr_enable_flags,
             reset => reset_flags,
-            output => flag_carry_out_add
+            output => flag_carry_add_reg
         );
 
     pc_write <= '1' when state = "11" else '0';
+
+    flag_zero_out <= flag_zero_reg;
+    flag_carry_out_sub <= flag_carry_sub_reg;
+    flag_carry_out_add <= flag_carry_add_reg;
     
 
 end arch;
