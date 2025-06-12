@@ -166,8 +166,9 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 - Os imediatos são valores de 11 bits (de `0` a `2047`).
 - Instruções que não usam todos os bits devem preencher os restantes com zeros.
 
-## Código em Assembly:
+## 📜 Código em Assembly:
 
+```asm
 0:  LOADREG R3, 0            ; R3 ← 0 (contador)
 1:  LOADREG R4, 0            ; R4 ← 0 (acumulador)
 2:  MOVREG R3                ; AC ← R3
