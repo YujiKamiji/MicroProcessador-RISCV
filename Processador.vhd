@@ -212,11 +212,12 @@ begin
 
     input_aux <= input_unsigned(6 downto 0);
 
+    -- mux para o input_jump
     with opcode_s select
     input_jump_s <= 
-        instr_out_s(14 downto 8)   when "0010",
-        input_aux                  when "1010" | "1110",
-        to_unsigned(0, 7)          when others;
+        instr_out_s(14 downto 8)   when "0010",  --jump
+        input_aux                  when "1010" | "1110", --bhi e bcc
+        to_unsigned(0, 7)          when others; --pra outra coisa, so coloca 0
 
     reg_selector_s <= instr_out_s(14 downto 11);
 

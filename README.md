@@ -155,7 +155,6 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 | `MOVREG` | 1100   |
 | `BHI`    | 1010   |
 | `BCC`    | 1110   |
-| `CLEAR`  | 1110   |
 
 ---
 

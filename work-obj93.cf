@@ -1,55 +1,55 @@
 v 4
-file . "PC/pc.vhd" "8d4fdf9724d5ab3fccd6da4151251cb96fc697af" "20250611162150.788":
-  entity pc at 1( 0) + 0 on 131;
-  architecture arch of pc at 17( 398) + 0 on 132;
-file . "Memoria/ROM_128_12bits.vhd" "5714e02ffff4148e86d611f8c943717efab5082a" "20250611170750.356":
-  entity rom at 1( 0) + 0 on 151;
-  architecture a_rom of rom at 13( 292) + 0 on 152;
-file . "Banc_ULA/Banc_ULA.vhd" "c6eacc8aa230f681877bada153bb8373dd71ce13" "20250611162150.741":
-  entity banc_ula at 1( 0) + 0 on 123;
-  architecture arch of banc_ula at 26( 835) + 0 on 124;
-file . "Banc_ULA/DeMuxes/Mux_9x1.vhd" "f016a6153ad441ecb7c148a7d44c79b462a8c312" "20250611162150.718":
-  entity mux_9x1 at 1( 0) + 0 on 119;
-  architecture arch of mux_9x1 at 13( 275) + 0 on 120;
-file . "Banc_ULA/DeMuxes/Mux_3x1.vhd" "00c0908ca5dc52057dbabddd4ca5266a691dbb2a" "20250611162150.697":
-  entity mux_3x1 at 1( 0) + 0 on 115;
-  architecture arch of mux_3x1 at 13( 259) + 0 on 116;
-file . "Banc_ULA/DeMuxes/Demux_1x9.vhd" "1272597a478c2afbbcc65e06a09e122f8ac93f2b" "20250611162150.674":
-  entity demux_1x9 at 1( 0) + 0 on 111;
-  architecture arch of demux_1x9 at 13( 237) + 0 on 112;
-file . "Banc_ULA/registrador/reg_19b.vhd" "04de6c4ba465f80875b372ae597b611d6a7c478b" "20250611162150.650":
-  entity reg_19b at 1( 0) + 0 on 107;
-  architecture arch of reg_19b at 15( 292) + 0 on 108;
-file . "Banc_ULA/registrador/flip_flop.vhd" "2bae282a3c40b2f3c67f2d74b7b330080b48f8e7" "20250611162150.628":
-  entity flip_flop at 1( 0) + 0 on 103;
-  architecture arch of flip_flop at 15( 269) + 0 on 104;
-file . "Banc_ULA/registrador/reg_16b.vhd" "7ba24bf82cc1b67d9cdd51e904c922da1972de3f" "20250611162150.640":
-  entity reg_16b at 1( 0) + 0 on 105;
-  architecture arch of reg_16b at 15( 292) + 0 on 106;
-file . "Banc_ULA/banc_reg/banc_reg_16b.vhd" "287a84f3f227de37ab5495a043d66325dbd7599a" "20250611162150.662":
-  entity banc_reg_16b at 1( 0) + 0 on 109;
-  architecture arch of banc_reg_16b at 16( 347) + 0 on 110;
-file . "Banc_ULA/DeMuxes/Mux_2x1.vhd" "60e9958a4531a8f34731e871a0d2aff2bdb186a8" "20250611162150.685":
-  entity mux_2x1 at 1( 0) + 0 on 113;
-  architecture arch of mux_2x1 at 13( 243) + 0 on 114;
-file . "Banc_ULA/DeMuxes/Mux_4x1.vhd" "bf130c99bd0fa26f5e05de7ea1f53af4658bdd06" "20250611162150.708":
-  entity mux_4x1 at 1( 0) + 0 on 117;
-  architecture arch of mux_4x1 at 13( 262) + 0 on 118;
-file . "Banc_ULA/ULA/ULA.vhd" "ceeeabf65e62c55c367493b835273fe4c8fc73cf" "20250611162150.728":
-  entity ula at 1( 0) + 0 on 121;
-  architecture arch of ula at 20( 504) + 0 on 122;
-file . "FSM/fsm_estado.vhd" "799854f4616c3d4114b737b8c85ec1230e616258" "20250611162150.752":
-  entity fsm_estado at 1( 0) + 0 on 125;
-  architecture behavior of fsm_estado at 13( 230) + 0 on 126;
-file . "PC/somador_pc.vhd" "6679ad5681bcd98f9a33a2a9e448789869120a66" "20250611162150.777":
-  entity somador_pc at 1( 0) + 0 on 129;
-  architecture arch of somador_pc at 13( 238) + 0 on 130;
-file . "Processador.vhd" "a786b1a42962061b17b7bbd9daac42a64b43a8ae" "20250611162150.813":
-  entity processador at 1( 0) + 0 on 135;
-  architecture arch of processador at 12( 183) + 0 on 136;
+file . "Processador_tb.vhd" "0220d30ce0e902d4c5475b2e45ecee8524783d63" "20250612175629.151":
+  entity processador_tb at 1( 0) + 0 on 161;
+  architecture sim of processador_tb at 8( 108) + 0 on 162;
 file . "UC/UC.vhd" "ca3dde7e5ff834d77fe8a2a9f86d723538c0c102" "20250611164739.828":
   entity uc at 1( 0) + 0 on 143;
   architecture arch of uc at 29( 785) + 0 on 144;
-file . "Processador_tb.vhd" "0220d30ce0e902d4c5475b2e45ecee8524783d63" "20250611171256.892":
-  entity processador_tb at 1( 0) + 0 on 155;
-  architecture sim of processador_tb at 8( 108) + 0 on 156;
+file . "Processador.vhd" "a786b1a42962061b17b7bbd9daac42a64b43a8ae" "20250612175618.064":
+  entity processador at 1( 0) + 0 on 159;
+  architecture arch of processador at 12( 183) + 0 on 160;
+file . "PC/somador_pc.vhd" "6679ad5681bcd98f9a33a2a9e448789869120a66" "20250611162150.777":
+  entity somador_pc at 1( 0) + 0 on 129;
+  architecture arch of somador_pc at 13( 238) + 0 on 130;
+file . "FSM/fsm_estado.vhd" "799854f4616c3d4114b737b8c85ec1230e616258" "20250611162150.752":
+  entity fsm_estado at 1( 0) + 0 on 125;
+  architecture behavior of fsm_estado at 13( 230) + 0 on 126;
+file . "Banc_ULA/ULA/ULA.vhd" "ceeeabf65e62c55c367493b835273fe4c8fc73cf" "20250611162150.728":
+  entity ula at 1( 0) + 0 on 121;
+  architecture arch of ula at 20( 504) + 0 on 122;
+file . "Banc_ULA/DeMuxes/Mux_4x1.vhd" "bf130c99bd0fa26f5e05de7ea1f53af4658bdd06" "20250611162150.708":
+  entity mux_4x1 at 1( 0) + 0 on 117;
+  architecture arch of mux_4x1 at 13( 262) + 0 on 118;
+file . "Banc_ULA/DeMuxes/Mux_2x1.vhd" "60e9958a4531a8f34731e871a0d2aff2bdb186a8" "20250611162150.685":
+  entity mux_2x1 at 1( 0) + 0 on 113;
+  architecture arch of mux_2x1 at 13( 243) + 0 on 114;
+file . "Banc_ULA/banc_reg/banc_reg_16b.vhd" "287a84f3f227de37ab5495a043d66325dbd7599a" "20250611162150.662":
+  entity banc_reg_16b at 1( 0) + 0 on 109;
+  architecture arch of banc_reg_16b at 16( 347) + 0 on 110;
+file . "Banc_ULA/registrador/reg_16b.vhd" "7ba24bf82cc1b67d9cdd51e904c922da1972de3f" "20250611162150.640":
+  entity reg_16b at 1( 0) + 0 on 105;
+  architecture arch of reg_16b at 15( 292) + 0 on 106;
+file . "Banc_ULA/registrador/flip_flop.vhd" "2bae282a3c40b2f3c67f2d74b7b330080b48f8e7" "20250611162150.628":
+  entity flip_flop at 1( 0) + 0 on 103;
+  architecture arch of flip_flop at 15( 269) + 0 on 104;
+file . "Banc_ULA/registrador/reg_19b.vhd" "04de6c4ba465f80875b372ae597b611d6a7c478b" "20250611162150.650":
+  entity reg_19b at 1( 0) + 0 on 107;
+  architecture arch of reg_19b at 15( 292) + 0 on 108;
+file . "Banc_ULA/DeMuxes/Demux_1x9.vhd" "1272597a478c2afbbcc65e06a09e122f8ac93f2b" "20250611162150.674":
+  entity demux_1x9 at 1( 0) + 0 on 111;
+  architecture arch of demux_1x9 at 13( 237) + 0 on 112;
+file . "Banc_ULA/DeMuxes/Mux_3x1.vhd" "00c0908ca5dc52057dbabddd4ca5266a691dbb2a" "20250611162150.697":
+  entity mux_3x1 at 1( 0) + 0 on 115;
+  architecture arch of mux_3x1 at 13( 259) + 0 on 116;
+file . "Banc_ULA/DeMuxes/Mux_9x1.vhd" "f016a6153ad441ecb7c148a7d44c79b462a8c312" "20250611162150.718":
+  entity mux_9x1 at 1( 0) + 0 on 119;
+  architecture arch of mux_9x1 at 13( 275) + 0 on 120;
+file . "Banc_ULA/Banc_ULA.vhd" "c6eacc8aa230f681877bada153bb8373dd71ce13" "20250611162150.741":
+  entity banc_ula at 1( 0) + 0 on 123;
+  architecture arch of banc_ula at 26( 835) + 0 on 124;
+file . "Memoria/ROM_128_12bits.vhd" "c74cfcf4388d098cb3a8a64f8c4027470afd5f4e" "20250612175550.904":
+  entity rom at 1( 0) + 0 on 157;
+  architecture a_rom of rom at 13( 292) + 0 on 158;
+file . "PC/pc.vhd" "8d4fdf9724d5ab3fccd6da4151251cb96fc697af" "20250611162150.788":
+  entity pc at 1( 0) + 0 on 131;
+  architecture arch of pc at 17( 398) + 0 on 132;
