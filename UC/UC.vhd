@@ -22,7 +22,8 @@ entity UC is
         load_control_banco: out std_logic;
         cmpi_control: out std_logic;
         wr_ac_enable: out std_logic;
-        wr_reg_enable: out std_logic
+        wr_reg_enable: out std_logic;
+        rw_ram : out std_logic
     );
 end UC;
 
@@ -77,6 +78,8 @@ begin
     -- BHI 1010(opcode) (14 downto 7)(imediato)
     -- BCC 1110(opcode) (14 downto 7)(imediato)
     jump_en <= '1' when (opcode = "0010") or (opcode = "1010" and flag_zero_reg = '0' and flag_carry_sub_reg = '0') or (opcode = "1110" and flag_carry_sub_reg = '0') else '0';
+
+    rw_ram <= '1' when opcode = "0000"  and instr(14) = '1' else '0' --falta de planejamento ao decidir 4 bits no opcode, estamos usando o 5 bit apenas nessa pq faltou e 0000 é o NOP entao nao tem como instr(14) ser 1
 
     --load control do acumulador
     with opcode select
