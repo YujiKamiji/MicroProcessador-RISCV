@@ -13,19 +13,11 @@ end rom;
 architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned(18 downto 0);
     constant conteudo_rom : mem := (
-        0  => "0110001100000000000",  -- LOADREG R3 (0011), 0
-        1  => "0110010000000000000",  -- LOADREG R4 (0100), 0
-        2  => "1000001100000000000",  -- MOVAC R3
-        3  => "0001010000000000000",  -- ADD R4
-        4  => "1100010000000000000",  -- MOVREG R4
-        5  => "1000001100000000000",  -- MOVAC R3
-        6  => "1001000000000000001",  -- ADDI 1
-        7  => "1100001100000000000",  -- MOVREG R3
-        8  => "0100000000000011101",  -- LOADAC 29
-        9  => "0111001100000000000",  -- CMP R3 e AC (30)
-        10 => "1010111110000000000",  -- BHI -8 (offset = 11111000)
-        11 => "1000010000000000000",  -- MOVAC R4
-        12 => "1100010100000000000",  -- MOVREG R5
+        0  => "0100000000000011101",  -- LOADAC 29
+        1  => "0110001100000000010",  -- LOADREG R3 (0011), 2
+        2  => "0000001100000000010",  -- MOVRAM R3 (Usa o ponteiro em r3 pra jogar o valor do ac na ram)
+        3  => "0100000000000000000",  -- LOADAC 0
+        4  => "0000001100000000001",  -- LOADRAM R3 (Usa o ponteiro em r3 pra ler o valor da ram e jogar no ac)
         others => "0000000000000000000"
     );
 
