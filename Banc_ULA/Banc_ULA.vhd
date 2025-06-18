@@ -10,7 +10,8 @@ entity Banc_ULA is
         load_control_banco: in std_logic;
         load_control_ac: in unsigned(1 downto 0);
         cmpi_control: in std_logic;
-        load_value: in unsigned(10 downto 0);     
+        load_value: in unsigned(10 downto 0); 
+        ram_value: in unsigned(15 downto 0);    
         wr_reg_enable: in std_logic;
         wr_ac_enable: in std_logic;
         reset: in std_logic;        
@@ -19,7 +20,8 @@ entity Banc_ULA is
         flag_zero: out std_logic;
         flag_carry_out_add: out std_logic;
         flag_carry_out_sub: out std_logic;
-        ac_value: out unsigned(15 downto 0)                      
+        ac_value: out unsigned(15 downto 0);
+        reg_value: out unsigned(15 downto 0)                 
     );
 end Banc_ULA;
 
@@ -70,9 +72,9 @@ architecture arch of Banc_ULA is
         );
     end component;
     
-    component Mux_3x1
+    component Mux_4x1
         Port (
-            ent1,ent2, ent3: in unsigned(15 downto 0);
+            ent1,ent2, ent3, ent4: in unsigned(15 downto 0);
             selector_key: in unsigned(1 downto 0);
             result: out unsigned(15 downto 0)
         );
@@ -96,12 +98,14 @@ begin
             selector_key => load_control_banco,
             result => in_banco
         );
+
     -- mux que entra no ac
-    mux_ac: Mux_3x1
+    mux_ac: Mux_4x1
         port map(
             ent1 => dado_ula,
             ent2 => load_value_16,
             ent3 => out_banco,
+            ent4 => ram_value,
             selector_key => load_control_ac,
             result => in_ac
         );
@@ -151,6 +155,7 @@ begin
         );
 
     
-    ac_value     <= ac_out;
+    ac_value  <= ac_out;
+    reg_value <= out_banco;     
         
 end arch;

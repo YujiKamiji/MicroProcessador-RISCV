@@ -21,7 +21,7 @@ architecture arch of ULA is
 
     component Mux_4x1 is
         port(
-            add,sub,andOP,cmp: in unsigned(15 downto 0);
+            ent1,ent2,ent3,ent4: in unsigned(15 downto 0);
             selector_key: in unsigned(1 downto 0);
             result: out unsigned(15 downto 0)  
         );
@@ -53,10 +53,10 @@ begin
 
     mux: Mux_4x1
         port map(
-            add => soma,
-            sub => sub,
-            andOP => and_op,
-            cmp => ac,
+            ent1 => soma,
+            ent2 => sub,
+            ent3 => and_op,
+            ent4 => ac,
             selector_key => op_code,
             result => mux_out
         );
