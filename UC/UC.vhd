@@ -80,7 +80,7 @@ begin
     jump_en <= '1' when (opcode = "0010") or (opcode = "1010" and flag_zero_reg = '0' and flag_carry_sub_reg = '0') or (opcode = "1110" and flag_carry_sub_reg = '0') else '0';
 
     -- MOVRAM 0000(opcode) (14 downto 11)(endereço reg) instr(1)(bit que usamos pq faltou opcodekk)
-    wr_ram <= '1' when opcode = "0000"  and instr(1) = '1' and state = "11" else '0' --falta de planejamento ao decidir 4 bits no opcode, estamos usando o 5 bit apenas nessa pq faltou e 0000 é o NOP entao nao tem como instr(1) ser 1
+    wr_ram <= '1' when opcode = "0000"  and instr(1) = '1' and state = "11" else '0'; --falta de planejamento ao decidir 4 bits no opcode, estamos usando o 5 bit apenas nessa pq faltou e 0000 é o NOP entao nao tem como instr(1) ser 1
 
     --load control do acumulador
     --with opcode select
@@ -91,7 +91,18 @@ begin
     --    "11" when ""
     --    "00" when others;
     --LOADRAM 0000(opcode) (14 downto 11)(endereço reg) instr(0)(bit que usamos q faltou opcode... perdão pela gambiarra)
-    load_control_ac <= "00" when (opcode = "0001" | "0011" | "0101" | "1001" | "1011") else "01" when opcode = "0100" else "10" when opcode = "1000" else "11" when (opcode = "0000" and instr(0) = '1');
+    load_control_ac <= 
+    "00" when (
+        opcode = "0001" or 
+        opcode = "0011" or 
+        opcode = "0101" or 
+        opcode = "1001" or 
+        opcode = "1011"
+    ) else
+    "01" when opcode = "0100" else
+    "10" when opcode = "1000" else
+    "11" when (opcode = "0000" and instr(0) = '1') else
+    "00";  -- valor padrão obrigatório
     
     --load control banco
     --load 0110(opcode) (14 downto 11)(endereço) (10 downto 0)(imediato)

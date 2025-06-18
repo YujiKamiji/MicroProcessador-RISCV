@@ -19,7 +19,8 @@ architecture arch of Processador is
             load_control_banco: in std_logic;
             load_control_ac: in unsigned(1 downto 0);
             cmpi_control: in std_logic;
-            load_value: in unsigned(10 downto 0);     
+            load_value: in unsigned(10 downto 0); 
+            ram_value: in unsigned(15 downto 0);    
             wr_reg_enable: in std_logic;
             wr_ac_enable: in std_logic;
             reset: in std_logic;        
@@ -164,7 +165,7 @@ begin
     ram_inst: ram
         port map(
             clk         => clk,
-            endereco    => reg_value_s,
+            endereco    => reg_value_s(6 downto 0),
             wr_en       => wr_ram_s,
             dado_in     => ac_value_s,
             dado_out    => ram_value_s
