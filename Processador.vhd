@@ -90,7 +90,7 @@ architecture arch of Processador is
         cmpi_control: out std_logic;
         wr_ac_enable: out std_logic;
         wr_reg_enable: out std_logic;
-        rw_ram : out std_logic
+        wr_ram : out std_logic
 
     );
     end component;
@@ -116,7 +116,7 @@ architecture arch of Processador is
     signal endereco_signed: signed(7 downto 0);
     signal input_aux: unsigned(6 downto 0);
     signal input_unsigned: unsigned(7 downto 0);
-    signal rw_ram_s: std_logic;
+    signal wr_ram_s: std_logic;
 
     -- Flags (sem nada por enquanto)
     signal flag_zero_in_s  : std_logic := '0';
@@ -183,7 +183,7 @@ begin
             cmpi_control => cmpi_control_s,
             wr_ac_enable => wr_ac_enable_s,
             wr_reg_enable => wr_reg_enable_s,
-            rw_ram => rw_ram_s
+            wr_ram => wr_ram_s
         );
 
    banco_ula: Banc_ULA 
