@@ -13,7 +13,7 @@ Este documento descreve como cada instrução do processador é codificada em bi
 
 ---
 
-## 🧮 Tipos de Instrução
+## 🦮 Tipos de Instrução
 
 ### 1. Operações com o acumulador (`ADD`, `SUB`, `AND`, `CMP`)
 
@@ -74,7 +74,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 #### `MOVREG` (AC -> REG)
 
 ```
-[18:15] Opcode = 1010  
+[18:15] Opcode = 1100  
 [14:11] Registrador destino 
 [10:0]  Não utilizado (zeros)
 ```
@@ -103,7 +103,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ### 6. Instruções de salto (`JUMP`, `BHI`, `BCC`)
 
-### `JUMP`
+#### `JUMP`
 
 ```
 [18:15] Opcode  
@@ -111,7 +111,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 [7:0]   Zeros (ou ignorados)
 ```
 
-### `BHI e BCC`
+#### `BHI` e `BCC`
 
 ```
 [18:15] Opcode  
@@ -125,7 +125,31 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ---
 
-### 7. Instrução NOP
+### 7. Acesso à RAM (`MOVRAM`, `LOADRAM`)
+
+#### `MOVRAM` (AC → RAM)
+
+```
+[18:15] Opcode = 0000  
+[14:11] Registrador com o ponteiro do endereço de memória desejado  
+[10:2]  Não utilizados (zeros)  
+[1]     = 1 (diferencia de NOP)  
+[0]     = 0
+```
+
+#### `LOADRAM` (RAM → AC)
+
+```
+[18:15] Opcode = 0000  
+[14:11] Registrador com o ponteiro do endereço de memória desejado 
+[10:2]  Não utilizados (zeros)  
+[1]     = 0  
+[0]     = 1 (diferencia de NOP)
+```
+
+---
+
+### 8. Instrução NOP
 
 **Formato:**
 
@@ -137,24 +161,29 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 
 ## 🗃️ Tabela de Opcodes
 
-| Instrução | Opcode |
-|----------|--------|
-| `NOP`    | 0000   |
-| `JUMP`   | 0010   |
-| `ADD`    | 0001   |
-| `SUB`    | 0011   |
-| `AND`    | 0101   |
-| `CMP`    | 0111   |
-| `ADDI`   | 1001   |
-| `SUBI`   | 1011   |
-| `CLEAR`  | 1101   |
-| `CMPI`   | 1111   |
-| `LOADAC` | 0100   |
-| `LOADREG`| 0110   |
-| `MOVAC`  | 1000   |
-| `MOVREG` | 1100   |
-| `BHI`    | 1010   |
-| `BCC`    | 1110   |
+| Instrução  | Opcode |
+|------------|--------|
+| `NOP`      | 0000   |
+| `JUMP`     | 0010   |
+| `ADD`      | 0001   |
+| `SUB`      | 0011   |
+| `AND`      | 0101   |
+| `CMP`      | 0111   |
+| `ADDI`     | 1001   |
+| `SUBI`     | 1011   |
+| `CLEAR`    | 1101   |
+| `CMPI`     | 1111   |
+| `LOADAC`   | 0100   |
+| `LOADREG`  | 0110   |
+| `MVAC`     | 1000   |
+| `MVREG`    | 1100   |
+| `BHI`      | 1010   |
+| `BCC`      | 1110   |
+| `MOVRAM`   | 0000¹  |
+| `LOADRAM`  | 0000²  |
+
+¹ `instr(1) = 1` e `instr(0) = 0`  
+² `instr(1) = 0` e `instr(0) = 1`
 
 ---
 
@@ -164,21 +193,4 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 - Os registradores são codificados em 4 bits (de `0000` a `1000`, ou R0 a R8).
 - Os imediatos são valores de 11 bits (de `0` a `2047`).
 - Instruções que não usam todos os bits devem preencher os restantes com zeros.
-
-## 📜 Código em Assembly:
-
-```asm
-0:  LOADREG R3, 0            ; R3 ← 0 (contador)
-1:  LOADREG R4, 0            ; R4 ← 0 (acumulador)
-2:  MOVREG R3                ; AC ← R3
-3:  ADD R4                   ; AC ← AC + R4
-4:  MOVREG R4                ; R4 ← AC (soma acumulada)
-5:  MOVREG R3                ; AC ← R3
-6:  ADDI 1                   ; AC ← AC + 1
-7:  MOVREG R3                ; R3 ← AC (incrementa contador)
-8:  LOADAC 30                ; AC ← 30
-9:  CMP R3                   ; Compara R3 com 30
-10: BHI -8                   ; Se R3 < 30, volta para instrução 3
-11: MOVREG R4                ; AC ← R4
-12: MOVAC R5                 ; R5 ← AC (guarda resultado final)
-
+- Instruções `MOVRAM` e `LOADRAM` utilizam dois bits extras (`instr(1)` e `instr(0)`) para diferenciação, já que compartilham o mesmo opcode `0000`.
