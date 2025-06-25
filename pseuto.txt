@@ -1,0 +1,5 @@
+loop para numeros de 1 a 32 nos enderecos da RAM 1 - 32
+
+eliminar da lista todos os numeros multiplos de 2, 3, 5, 7, 11, 
+
+loop para vizualisar os dados
