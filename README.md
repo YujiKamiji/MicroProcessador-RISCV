@@ -116,7 +116,7 @@ Essas instruções operam entre o acumulador (AC) e um valor imediato.
 ```
 [18:15] Opcode  
 [14:7]  Offset  
-[7:0]   Zeros (ou ignorados)
+[6:0]   Zeros (ou ignorados)
 ```
 
 **Exemplo:**
